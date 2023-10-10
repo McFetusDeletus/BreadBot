@@ -28,8 +28,7 @@ import {ItemData} from '../../bot/data/global/ItemData';
  * Handles the manipulation of a user's profile,
  * which is stored in JSON.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class BoarUser {
     public readonly user: User;

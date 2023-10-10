@@ -10,8 +10,7 @@ import {
  *
  * An interface used to create new commands.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export interface Command {
     data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;

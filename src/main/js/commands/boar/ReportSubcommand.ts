@@ -18,8 +18,7 @@ import {GuildData} from '../../bot/data/global/GuildData';
  * Allows a user to report a bug or exploit and sends
  * it in the reports forum channel
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class ReportSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

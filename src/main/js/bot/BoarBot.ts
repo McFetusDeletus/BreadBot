@@ -34,8 +34,7 @@ import {GuildData} from './data/global/GuildData';
  * all event and command handlers are. Loads
  * other configurations as well.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class BoarBot implements Bot {
 	private client = new Client({ intents:[] });

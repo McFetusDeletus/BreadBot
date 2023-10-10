@@ -6,8 +6,7 @@ import Canvas from '@napi-rs/canvas';
  * A collection of functions to make canvas
  * editing easier/cleaner.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class CanvasUtils {
     /**

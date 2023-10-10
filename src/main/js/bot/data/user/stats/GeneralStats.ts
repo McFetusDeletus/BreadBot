@@ -3,8 +3,7 @@
  *
  * A collection of user general stats.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 
 export class GeneralStats {

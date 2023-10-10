@@ -47,8 +47,7 @@ enum Board {
  *
  * Used to see leaderboards that rank player stats
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class TopSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

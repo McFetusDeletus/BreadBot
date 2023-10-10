@@ -11,8 +11,7 @@ import {BuySellData} from '../../bot/data/global/BuySellData';
  *
  * Creates the boar market image.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class MarketImageGenerator {
     private config = {} as BotConfig;

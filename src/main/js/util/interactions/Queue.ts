@@ -5,8 +5,7 @@
  * must go through to ensure no overwriting
  * occurs.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class Queue {
     // [1-10] are queues for users based on last digit of ID

@@ -14,8 +14,7 @@ import {CustomEmbedGenerator} from '../generators/CustomEmbedGenerator';
  * A collection of replies that are commonly
  * executed.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class Replies {
     /**

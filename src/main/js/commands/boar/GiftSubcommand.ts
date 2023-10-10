@@ -16,8 +16,7 @@ import {GuildData} from '../../bot/data/global/GuildData';
  *
  * Allows a user to send a Boar Gift if they have one
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class GiftSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

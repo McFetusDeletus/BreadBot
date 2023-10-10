@@ -26,8 +26,7 @@ import {GuildData} from '../../bot/data/global/GuildData';
  *
  * Allows a user to view their weekly boar quests
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class QuestsSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();
