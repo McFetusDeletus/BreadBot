@@ -11,8 +11,7 @@ import {QuestData} from '../../bot/data/global/QuestData';
  *
  * Creates an image showing a user's progress on weekly boar quests
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 
 export class QuestsImageGenerator {

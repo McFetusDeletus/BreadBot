@@ -9,8 +9,7 @@ import {InteractionUtils} from '../../util/interactions/InteractionUtils';
  *
  * All main boar commands.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class BoarCommand implements Command {
     private config = BoarBotApp.getBot().getConfig();

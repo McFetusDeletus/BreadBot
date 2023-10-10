@@ -21,8 +21,7 @@ import {DataHandlers} from "../../util/data/DataHandlers";
  *
  * Allows a user to delete all data tied to their account.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class SelfWipeSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

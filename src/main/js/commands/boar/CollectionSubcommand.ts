@@ -42,8 +42,7 @@ enum View {
  * Used to see a collection of boars, powerups,
  * and other information pertaining to a user.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class CollectionSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

@@ -14,8 +14,7 @@ import {DataHandlers} from '../../util/data/DataHandlers';
  *
  * Used to ban a user from BoarBot
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class BanSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

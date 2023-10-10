@@ -15,8 +15,7 @@ import * as path from "path";
  * Handles setting, getting, and deploying commands
  * for a bot instance.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class CommandHandler {
     private commands = new Map<string, Command>();

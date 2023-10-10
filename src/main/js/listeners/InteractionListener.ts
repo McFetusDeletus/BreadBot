@@ -21,8 +21,7 @@ import {DataHandlers} from '../util/data/DataHandlers';
  * An event that runs once the bot detects an
  * interaction.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class InteractionListener implements Listener {
     public readonly eventName = Events.InteractionCreate;

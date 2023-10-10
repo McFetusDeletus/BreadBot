@@ -28,8 +28,7 @@ import {QuestData} from '../bot/data/global/QuestData';
  *
  * Handles sending powerups and collecting user interactions
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class PowerupEvent {
     private config = BoarBotApp.getBot().getConfig();

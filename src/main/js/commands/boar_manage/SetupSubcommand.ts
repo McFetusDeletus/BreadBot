@@ -28,8 +28,7 @@ import {ComponentConfig} from "../../bot/config/commands/ComponentConfig";
  *
  * Sets up the bot with style and channels.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class SetupSubcommand implements Subcommand {
     private config = BoarBotApp.getBot().getConfig();

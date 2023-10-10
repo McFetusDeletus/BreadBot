@@ -11,8 +11,7 @@ import {BoarUser} from '../util/boar/BoarUser';
  * An event that runs when someone sends a
  * message that the bot can read.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export default class MessageListener implements Listener {
 	public readonly eventName: Events = Events.MessageCreate;

@@ -26,8 +26,7 @@ enum Colors {
  * Handles util logging information, debugging, and
  * errors.
  *
- * @license {@link http://www.apache.org/licenses/ Apache-2.0}
- * @copyright WeslayCodes 2023
+ * @copyright WeslayCodes & Contributors 2023
  */
 export class LogDebug {
     public static readonly Colors = Colors;
