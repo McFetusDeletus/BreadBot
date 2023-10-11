@@ -54,4 +54,9 @@ export class BoarCommandConfig extends CommandConfig {
      * {@link SubcommandConfig Subcommand information} for {@link QuestsSubcommand}
      */
     public readonly quests = new SubcommandConfig();
+
+    /**
+     * {@link SubcommandConfig Subcommand information} for {@link SupportSubcommand}
+     */
+    public readonly support = new SubcommandConfig();
 }

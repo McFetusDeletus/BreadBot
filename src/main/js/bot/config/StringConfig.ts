@@ -235,4 +235,6 @@ export class StringConfig {
     public readonly commandDebugPrefix = '' as string;
     public readonly pullLink = '' as string;
     public readonly githubImg = '' as string;
+    public readonly supportLink = '' as string;
+    public readonly supportStr = '' as string;
 }
