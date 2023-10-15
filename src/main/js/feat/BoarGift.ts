@@ -99,25 +99,27 @@ export class BoarGift {
             });
 
             setTimeout(async () => {
-                const randRow = Math.floor(randCorrectIndex / numRows);
-                const randCol = randCorrectIndex - (randRow * numRows);
+                try {
+                    const randRow = Math.floor(randCorrectIndex / numRows);
+                    const randCol = randCorrectIndex - (randRow * numRows);
 
-                rows[randRow].components[randCol] = new ButtonBuilder(rightButton)
-                    .setCustomId((rightButton.customId + '|' + interaction.id + '|' + interaction.user.id))
-                    .setDisabled(false);
+                    rows[randRow].components[randCol] = new ButtonBuilder(rightButton)
+                        .setCustomId((rightButton.customId + '|' + interaction.id + '|' + interaction.user.id))
+                        .setDisabled(false);
 
-                await this.giftMessage.edit({
-                    components: rows
-                });
-                this.editedTime = Date.now();
+                    await this.giftMessage.edit({
+                        components: rows
+                    });
+                    this.editedTime = Date.now();
 
-                this.collector.on('collect', async (inter: ButtonInteraction) => {
-                    await this.handleCollect(inter);
-                });
+                    this.collector.on('collect', async (inter: ButtonInteraction) => {
+                        await this.handleCollect(inter);
+                    });
 
-                this.collector.once('end', async (_, reason) => {
-                    await this.handleEndCollect(reason);
-                });
+                    this.collector.once('end', async (_, reason) => {
+                        await this.handleEndCollect(reason);
+                    });
+                } catch {}
             }, randTimeoutDuration);
         } catch (err: unknown) {
             await Queue.addQueue(async () => {

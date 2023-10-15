@@ -21,10 +21,7 @@ export class EventHandler {
         let listenerFiles: string[];
 
         try {
-            listenerFiles = fs.readdirSync(path.resolve(__dirname, config.pathConfig.listeners))
-                .filter((fname: string) => {
-                    return fname.endsWith('.js');
-                });
+            listenerFiles = fs.readdirSync(path.resolve(__dirname, config.pathConfig.listeners));
         } catch {
             LogDebug.handleError('Unable to find listener directory provided in \'config.json\'!');
             process.exit(-1);

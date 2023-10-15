@@ -59,4 +59,9 @@ export class BoarCommandConfig extends CommandConfig {
      * {@link SubcommandConfig Subcommand information} for {@link SupportSubcommand}
      */
     public readonly support = new SubcommandConfig();
+
+    /**
+     * {@link SubcommandConfig Subcommand information} for {@link GuessSubcommand}
+     */
+    public readonly guess = new SubcommandConfig();
 }

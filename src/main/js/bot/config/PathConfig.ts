@@ -105,6 +105,7 @@ export class PathConfig {
     public readonly powerup = '' as string;
     public readonly check = '' as string;
     public readonly noAvatar = '' as string;
+    public readonly guessInterpreterFile = '' as string;
 
     // Python scripts
 

@@ -53,10 +53,7 @@ export class CommandHandler {
         let allSubcommandFiles = [] as string[];
 
         for (const commandFolder of commandFolders) {
-            const folderFiles = fs.readdirSync(path.resolve(__dirname, config.pathConfig.commands + commandFolder))
-                .filter((fname: string) => {
-                    return fname.endsWith('.js');
-                });
+            const folderFiles = fs.readdirSync(path.resolve(__dirname, config.pathConfig.commands + commandFolder));
 
             const subcommandFiles = folderFiles.filter((fname: string) => {
                 return fname.toLowerCase().includes('subcommand');

@@ -11,7 +11,6 @@ import {InteractionUtils} from '../../util/interactions/InteractionUtils';
 import {Replies} from '../../util/interactions/Replies';
 import {LogDebug} from '../../util/logging/LogDebug';
 import {ItemImageGenerator} from '../../util/generators/ItemImageGenerator';
-import {BoarUtils} from '../../util/boar/BoarUtils';
 
 /**
  * {@link GiveSubcommand GiveSubcommand.ts}
@@ -118,7 +117,8 @@ export default class GiveSubcommand implements Subcommand {
         let attachment: AttachmentBuilder | undefined;
         let replyString = strConfig.giveBoar;
 
-        const idNoExist = !tag || tag === strConfig.giveBoarChoiceTag && !BoarUtils.findRarity(inputID, this.config) ||
+        const idNoExist = !tag ||
+            tag === strConfig.giveBoarChoiceTag && !this.config.itemConfigs.boars[inputID] ||
             tag === strConfig.giveBadgeChoiceTag && !this.config.itemConfigs.badges[inputID];
 
         if (idNoExist) {
