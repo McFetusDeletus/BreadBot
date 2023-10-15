@@ -49,9 +49,11 @@ export default class GiftSubcommand implements Subcommand {
      * @private
      */
     private async sendGift() {
+        let boarUser = {} as BoarUser;
+
         await Queue.addQueue(async () => {
             try {
-                const boarUser = new BoarUser(this.interaction.user);
+                boarUser = new BoarUser(this.interaction.user);
 
                 // Tells user they don't have any gifts
                 if (boarUser.itemCollection.powerups.gift.numTotal <= 0) {
@@ -73,19 +75,19 @@ export default class GiftSubcommand implements Subcommand {
 
                 boarUser.itemCollection.powerups.gift.curOut = Date.now();
                 boarUser.updateUserData();
-
-                // Sends gift message out to current channel
-                await new BoarGift(boarUser, this.config).sendMessage(this.interaction);
-
-                // Tells user they successfully sent the gift
-                await Replies.handleReply(
-                    this.interaction, this.config.stringConfig.giftSent, this.config.colorConfig.green
-                );
             } catch (err: unknown) {
                 LogDebug.handleError(err, this.interaction);
             }
         }, 'gift_send' + this.interaction.id + this.interaction.user.id).catch((err: unknown) => {
             throw err;
         });
+
+        // Sends gift message out to current channel
+        await new BoarGift(boarUser, this.config).sendMessage(this.interaction);
+
+        // Tells user they successfully sent the gift
+        await Replies.handleReply(
+            this.interaction, this.config.stringConfig.giftSent, this.config.colorConfig.green
+        );
     }
 }

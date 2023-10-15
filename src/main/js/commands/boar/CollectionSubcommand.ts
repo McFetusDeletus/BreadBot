@@ -595,13 +595,14 @@ export default class CollectionSubcommand implements Subcommand {
 
                 this.boarUser.itemCollection.powerups.gift.curOut = Date.now();
                 this.boarUser.updateUserData();
-                await new BoarGift(this.boarUser, this.config).sendMessage(this.compInter);
             } catch (err: unknown) {
                 LogDebug.handleError(err, this.compInter);
             }
         }, 'coll_gift' + this.compInter.id + this.compInter.user.id).catch((err: unknown) => {
             throw err;
         });
+
+        await new BoarGift(this.boarUser, this.config).sendMessage(this.compInter);
     }
 
     /**

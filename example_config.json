@@ -81,7 +81,8 @@
     "check": "Checkmark.png",
     "noAvatar": "NoAvatar.png",
     "dynamicImageScript": "src/main/python/make_animated_image.py",
-    "userOverlayScript": "src/main/python/user_animated_overlay.py"
+    "userOverlayScript": "src/main/python/user_animated_overlay.py",
+    "guessInterpreterFile": "../../util/boar/GuessInterpreter.js"
   },
   "stringConfig": {
     "noPermission": "You don't have permission to use this command.",
@@ -293,8 +294,10 @@
     "defaultImageName": "unknown",
     "fontName": "Minecraft",
     "commandDebugPrefix": "%@ [%@%@]\n",
-    "pullLink": "https://api.github.com/repos/WeslayCodes/BoarBot/pulls?state=closed",
-    "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+    "pullLink": "https://api.github.com/repos/BoarBotDevs/BoarBot/pulls?state=closed",
+    "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    "supportLink": "https://www.patreon.com/BoarBotDevs",
+    "supportStr": "Like playing BoarBot? Support us on our Patreon!\n"
   },
   "numberConfig": {
     "originPos": [
@@ -996,7 +999,7 @@
       415,
       308
     ],
-    "marketOrdNameWidth": 740,
+    "marketOrdNameWidth": 720,
     "marketOrdListPos": [
       415,
       1302
@@ -1898,6 +1901,21 @@
               ]
             }
           ]
+        ]
+      },
+      "support": {
+        "name": "support",
+        "description": "Get the link to BoarBot's Patreon"
+      },
+      "guess": {
+        "name": "guess",
+        "description": "Guess a value for hunts",
+        "args": [
+          {
+            "name": "value",
+            "description": "Value to guess",
+            "required": true
+          }
         ]
       }
     },

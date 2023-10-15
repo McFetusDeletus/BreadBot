@@ -97,6 +97,13 @@ export default class BoarCommand implements Command {
         )
         .addSubcommand(sub => sub.setName(this.commandInfo.support.name)
             .setDescription(this.commandInfo.support.description)
+        )
+        .addSubcommand(sub => sub.setName(this.commandInfo.guess.name)
+            .setDescription(this.commandInfo.guess.description)
+            .addStringOption(option => option.setName(this.commandInfo.guess.args[0].name)
+                .setDescription(this.commandInfo.guess.args[0].description)
+                .setRequired(InteractionUtils.toBoolean(this.commandInfo.guess.args[0].required))
+            )
         );
 
     public async execute(interaction: ChatInputCommandInteraction): Promise<void> {

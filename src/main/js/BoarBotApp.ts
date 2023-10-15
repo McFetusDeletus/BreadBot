@@ -28,12 +28,12 @@ export class BoarBotApp {
 
         process.on('uncaughtException', async (e) => {
             LogDebug.handleError(e, undefined, false);
-            process.exit();
+            process.exit(-2);
         });
 
         process.on('unhandledRejection', async (e) => {
             LogDebug.handleError(e, undefined, false);
-            process.exit();
+            process.exit(-2);
         });
 
         if (process.argv[2] === 'deploy-prod') {

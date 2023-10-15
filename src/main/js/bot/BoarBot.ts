@@ -297,7 +297,7 @@ export class BoarBot implements Bot {
 	 * @private
 	 */
 	private startPowCron() {
-		const startMin = 60 - this.getConfig().numberConfig.powPlusMinusMins;
+		const startMin = 30 - this.getConfig().numberConfig.powPlusMinusMins;
 		const hourInterval = this.getConfig().numberConfig.powIntervalHours;
 
 		new CronJob(`${startMin} */${hourInterval} * * *`, async () => {
@@ -327,6 +327,7 @@ export class BoarBot implements Bot {
 			const config = this.getConfig();
 
 			LogDebug.log('Interaction Listeners: ' + this.client.listenerCount(Events.InteractionCreate), config);
+			LogDebug.log(process.memoryUsage(), config);
 
 			await this.sendUpdateInfo(await DataHandlers.getGithubData());
 			this.removeWipeUsers();
@@ -385,46 +386,50 @@ export class BoarBot implements Bot {
 	 */
 	private async removeWipeUsers(): Promise<void> {
 		await Queue.addQueue(async () => {
-			const wipeUsers = DataHandlers.getGlobalData(DataHandlers.GlobalFile.WipeUsers) as Record<string, number>;
-			const itemsData = DataHandlers.getGlobalData(DataHandlers.GlobalFile.Items) as ItemsData;
-			const userDataFolder = this.getConfig().pathConfig.databaseFolder +
-				this.getConfig().pathConfig.userDataFolder;
+			try {
+				const wipeUsers = DataHandlers.getGlobalData(DataHandlers.GlobalFile.WipeUsers) as Record<string, number>;
+				const itemsData = DataHandlers.getGlobalData(DataHandlers.GlobalFile.Items) as ItemsData;
+				const userDataFolder = this.getConfig().pathConfig.databaseFolder +
+					this.getConfig().pathConfig.userDataFolder;
 
-			for (const userID of Object.keys(wipeUsers)) {
-				if (wipeUsers[userID] < Date.now()) {
-					try {
-						fs.rmSync(userDataFolder + userID + '.json');
-					} catch (err: unknown) {
-						LogDebug.handleError(err);
-					}
+				for (const userID of Object.keys(wipeUsers)) {
+					if (wipeUsers[userID] < Date.now()) {
+						try {
+							fs.rmSync(userDataFolder + userID + '.json');
+						} catch (err: unknown) {
+							LogDebug.handleError(err);
+						}
 
-					for (const itemTypeID of Object.keys(itemsData)) {
-						for (const itemID of Object.keys(itemsData[itemTypeID])) {
-							const itemData = itemsData[itemTypeID][itemID];
+						for (const itemTypeID of Object.keys(itemsData)) {
+							for (const itemID of Object.keys(itemsData[itemTypeID])) {
+								const itemData = itemsData[itemTypeID][itemID];
 
-							for (let i=0; i<itemData.buyers.length; i++) {
-								const buyOrder = itemData.buyers[i];
+								for (let i=0; i<itemData.buyers.length; i++) {
+									const buyOrder = itemData.buyers[i];
 
-								if (buyOrder.userID === userID) {
-									itemsData[itemTypeID][itemID].buyers.splice(i, 1);
+									if (buyOrder.userID === userID) {
+										itemsData[itemTypeID][itemID].buyers.splice(i, 1);
+									}
 								}
-							}
 
-							for (let i=0; i<itemData.sellers.length; i++) {
-								const sellOrder = itemData.sellers[i];
+								for (let i=0; i<itemData.sellers.length; i++) {
+									const sellOrder = itemData.sellers[i];
 
-								if (sellOrder.userID === userID) {
-									itemsData[itemTypeID][itemID].sellers.splice(i, 1);
+									if (sellOrder.userID === userID) {
+										itemsData[itemTypeID][itemID].sellers.splice(i, 1);
+									}
 								}
 							}
 						}
+
+						delete wipeUsers[userID];
+
+						DataHandlers.saveGlobalData(itemsData, DataHandlers.GlobalFile.Items);
+						DataHandlers.saveGlobalData(wipeUsers, DataHandlers.GlobalFile.WipeUsers);
 					}
-
-					delete wipeUsers[userID];
-
-					DataHandlers.saveGlobalData(itemsData, DataHandlers.GlobalFile.Items);
-					DataHandlers.saveGlobalData(wipeUsers, DataHandlers.GlobalFile.WipeUsers);
 				}
+			} catch (err: unknown) {
+				LogDebug.handleError(err);
 			}
 		}, 'wipe_user_global');
 	}
