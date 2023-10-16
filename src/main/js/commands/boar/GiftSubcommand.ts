@@ -51,6 +51,8 @@ export default class GiftSubcommand implements Subcommand {
     private async sendGift() {
         let boarUser = {} as BoarUser;
 
+        let shouldGift = true;
+
         await Queue.addQueue(async () => {
             try {
                 boarUser = new BoarUser(this.interaction.user);
@@ -60,6 +62,7 @@ export default class GiftSubcommand implements Subcommand {
                     await Replies.handleReply(
                         this.interaction, this.config.stringConfig.giftNone, this.config.colorConfig.error
                     );
+                    shouldGift = false;
                     return;
                 }
 
@@ -70,6 +73,7 @@ export default class GiftSubcommand implements Subcommand {
                     await Replies.handleReply(
                         this.interaction, this.config.stringConfig.giftOut, this.config.colorConfig.error
                     );
+                    shouldGift = false;
                     return;
                 }
 
@@ -81,6 +85,8 @@ export default class GiftSubcommand implements Subcommand {
         }, 'gift_send' + this.interaction.id + this.interaction.user.id).catch((err: unknown) => {
             throw err;
         });
+
+        if (!shouldGift) return;
 
         // Sends gift message out to current channel
         await new BoarGift(boarUser, this.config).sendMessage(this.interaction);

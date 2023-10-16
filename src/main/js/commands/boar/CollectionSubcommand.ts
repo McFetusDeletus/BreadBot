@@ -570,6 +570,8 @@ export default class CollectionSubcommand implements Subcommand {
 
         this.giftStage--;
 
+        let shouldGift = true;
+
         // Edits a user's collection and sends out the gift message
         await Queue.addQueue(async () => {
             try {
@@ -580,6 +582,7 @@ export default class CollectionSubcommand implements Subcommand {
                     await Replies.handleReply(
                         this.compInter, strConfig.giftNone, colorConfig.error, undefined, undefined, true
                     );
+                    shouldGift = false;
                     return;
                 }
 
@@ -590,6 +593,7 @@ export default class CollectionSubcommand implements Subcommand {
                     await Replies.handleReply(
                         this.compInter, strConfig.giftOut, colorConfig.error, undefined, undefined, true
                     );
+                    shouldGift = false;
                     return;
                 }
 
@@ -601,6 +605,8 @@ export default class CollectionSubcommand implements Subcommand {
         }, 'coll_gift' + this.compInter.id + this.compInter.user.id).catch((err: unknown) => {
             throw err;
         });
+
+        if (!shouldGift) return;
 
         await new BoarGift(this.boarUser, this.config).sendMessage(this.compInter);
     }
