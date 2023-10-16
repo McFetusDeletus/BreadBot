@@ -92,7 +92,6 @@ if gifter_user_tag != '' and gifter_avatar_url != '':
         gifter_avatar = Image.open(other_assets + path_config['noAvatar']).convert('RGBA').resize(avatar_size)
     gifter_avatar.putalpha(ImageChops.multiply(gifter_avatar.getchannel('A'), circle_mask.getchannel('A')).convert('L'))
 
-
 try:
     user_avatar = Image.open(BytesIO(requests.get(avatar_url).content)).convert('RGBA').resize(avatar_size)
 except:

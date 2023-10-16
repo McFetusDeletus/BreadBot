@@ -334,7 +334,7 @@ export class BoarBot implements Bot {
 
 			await this.sendUpdateInfo(await DataHandlers.getGithubData());
 			this.removeWipeUsers();
-		}, 10000);
+		}, 120000);
 	}
 
 	/**
