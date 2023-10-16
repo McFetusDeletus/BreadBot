@@ -112,7 +112,7 @@ export default class GiveSubcommand implements Subcommand {
         let attachment: AttachmentBuilder | undefined;
         let replyString = strConfig.giveBoar;
 
-        const idNoExist = !tag || tag !== strConfig.giveBoarChoiceTag || tag !== strConfig.giveBadgeChoiceTag ||
+        const idNoExist = !tag || tag !== (strConfig.giveBoarChoiceTag && tag !== strConfig.giveBadgeChoiceTag) ||
             tag === strConfig.giveBoarChoiceTag && !this.config.itemConfigs.boars[inputID] ||
             tag === strConfig.giveBadgeChoiceTag && !this.config.itemConfigs.badges[inputID];
 
