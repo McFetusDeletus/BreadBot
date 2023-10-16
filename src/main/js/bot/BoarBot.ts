@@ -26,6 +26,7 @@ import {BoarUtils} from '../util/boar/BoarUtils';
 import {ItemsData} from './data/global/ItemsData';
 import {GitHubData} from './data/global/GitHubData';
 import {GuildData} from './data/global/GuildData';
+import v8 from 'v8';
 
 /**
  * {@link BoarBot BoarBot.ts}
@@ -205,6 +206,8 @@ export class BoarBot implements Bot {
 	 */
 	private startNotificationCron(): void {
 		new CronJob('0 0 * * *', async () => {
+			v8.writeHeapSnapshot();
+
 			const userDataFolder = this.getConfig().pathConfig.databaseFolder +
 				this.getConfig().pathConfig.userDataFolder;
 
@@ -331,7 +334,7 @@ export class BoarBot implements Bot {
 
 			await this.sendUpdateInfo(await DataHandlers.getGithubData());
 			this.removeWipeUsers();
-		}, 120000);
+		}, 10000);
 	}
 
 	/**
