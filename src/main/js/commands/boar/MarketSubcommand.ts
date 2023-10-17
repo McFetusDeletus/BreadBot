@@ -1987,6 +1987,7 @@ export default class MarketSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             this.hasStopped = true;
+            delete CollectorUtils.marketCollectors[this.firstInter.user.id];
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 

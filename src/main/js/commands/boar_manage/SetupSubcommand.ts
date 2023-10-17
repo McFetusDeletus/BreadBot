@@ -316,6 +316,7 @@ export default class SetupSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
+            delete CollectorUtils.setupCollectors[this.firstInter.user.id];
 
             clearInterval(this.timerVars.updateTime);
             this.endModalListener(this.firstInter.client);
