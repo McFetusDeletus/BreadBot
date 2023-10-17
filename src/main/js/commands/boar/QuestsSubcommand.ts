@@ -291,6 +291,7 @@ export default class QuestsSubcommand implements Subcommand {
     public async handleEndCollect(reason: string) {
         try {
             this.hasStopped = true;
+            delete CollectorUtils.questsCollectors[this.firstInter.user.id];
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 

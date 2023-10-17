@@ -181,6 +181,7 @@ export default class HelpSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             this.hasStopped = true;
+            delete CollectorUtils.helpCollectors[this.firstInter.user.id];
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 

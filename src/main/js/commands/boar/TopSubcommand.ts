@@ -294,6 +294,7 @@ export default class TopSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             this.hasStopped = true;
+            delete CollectorUtils.topCollectors[this.firstInter.user.id];
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 
