@@ -87,7 +87,7 @@ export default class HelpSubcommand implements Subcommand {
             const oldCollector = CollectorUtils.helpCollectors[interaction.user.id];
 
             setTimeout(() => {
-                oldCollector.stop(CollectorUtils.Reasons.Expired)
+                oldCollector.stop(CollectorUtils.Reasons.Overridden)
             }, 1000);
         }
 
@@ -181,7 +181,10 @@ export default class HelpSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             this.hasStopped = true;
-            delete CollectorUtils.helpCollectors[this.firstInter.user.id];
+
+            if (reason !== CollectorUtils.Reasons.Overridden) {
+                delete CollectorUtils.helpCollectors[this.firstInter.user.id];
+            }
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 

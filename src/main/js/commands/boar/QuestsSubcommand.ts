@@ -56,7 +56,7 @@ export default class QuestsSubcommand implements Subcommand {
             const oldCollector = CollectorUtils.questsCollectors[interaction.user.id];
 
             setTimeout(() => {
-                oldCollector.stop(CollectorUtils.Reasons.Expired);
+                oldCollector.stop(CollectorUtils.Reasons.Overridden);
             }, 1000);
         }
 
@@ -291,7 +291,10 @@ export default class QuestsSubcommand implements Subcommand {
     public async handleEndCollect(reason: string) {
         try {
             this.hasStopped = true;
-            delete CollectorUtils.questsCollectors[this.firstInter.user.id];
+
+            if (reason !== CollectorUtils.Reasons.Overridden) {
+                delete CollectorUtils.questsCollectors[this.firstInter.user.id];
+            }
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 

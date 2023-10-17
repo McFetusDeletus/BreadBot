@@ -72,7 +72,7 @@ export default class SetupSubcommand implements Subcommand {
             const oldCollector = CollectorUtils.setupCollectors[interaction.user.id];
 
             setTimeout(() => {
-                oldCollector.stop(CollectorUtils.Reasons.Expired);
+                oldCollector.stop(CollectorUtils.Reasons.Overridden);
             }, 1000);
         }
 
@@ -316,7 +316,10 @@ export default class SetupSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
-            delete CollectorUtils.setupCollectors[this.firstInter.user.id];
+
+            if (reason !== CollectorUtils.Reasons.Overridden) {
+                delete CollectorUtils.setupCollectors[this.firstInter.user.id];
+            }
 
             clearInterval(this.timerVars.updateTime);
             this.endModalListener(this.firstInter.client);
