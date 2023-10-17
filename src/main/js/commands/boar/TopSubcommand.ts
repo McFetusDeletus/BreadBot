@@ -126,7 +126,7 @@ export default class TopSubcommand implements Subcommand {
             const oldCollector = CollectorUtils.topCollectors[interaction.user.id];
 
             setTimeout(() => {
-                oldCollector.stop(CollectorUtils.Reasons.Expired);
+                oldCollector.stop(CollectorUtils.Reasons.Overridden);
             }, 1000);
         }
 
@@ -294,7 +294,10 @@ export default class TopSubcommand implements Subcommand {
     private async handleEndCollect(reason: string): Promise<void> {
         try {
             this.hasStopped = true;
-            delete CollectorUtils.topCollectors[this.firstInter.user.id];
+
+            if (reason !== CollectorUtils.Reasons.Overridden) {
+                delete CollectorUtils.topCollectors[this.firstInter.user.id];
+            }
 
             LogDebug.log('Ended collection with reason: ' + reason, this.config, this.firstInter);
 
