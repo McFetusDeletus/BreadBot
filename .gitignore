@@ -12,6 +12,7 @@ src/main/resources/items/boars/*
 !src/main/resources/items/boars/RickrollBoar.gif
 !src/main/resources/items/boars/RickrollBoarSTATIC.png
 !src/main/resources/items/boars/Suboarnova.png
+!src/main/resources/items/boars/ZombieBoar.png
 !src/main/resources/items/boars/Boarcterium.png
 !src/main/resources/items/boars/Boarnderwear.png
 src/main/resources/items/badges/*

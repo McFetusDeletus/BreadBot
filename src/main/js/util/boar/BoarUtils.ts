@@ -52,10 +52,10 @@ export class BoarUtils {
 
         const validRarityBoars = [] as string[];
         for (const boarID of rarities[rarityIndex].boars) {
-            const isBlacklisted = boarIDs[boarID].blacklisted;
+            const blacklistType = boarIDs[boarID].blacklistType;
             const isSB = boarIDs[boarID].isSB;
 
-            if (isBlacklisted || (!guildData?.isSBServer && isSB)) continue;
+            if (blacklistType === 'normal' || (!guildData?.isSBServer && isSB)) continue;
 
             validRarityBoars.push(boarID);
         }
@@ -148,6 +148,17 @@ export class BoarUtils {
                 weight = 0;
             }
 
+            const curDate = new Date();
+            const isHalloWeek = curDate.getMonth() === 9 && curDate.getDate() >= 17;
+
+            if (isHalloWeek && i === 0) {
+                weight = 0;
+            }
+
+            if (isHalloWeek && rarities[i].name === 'Boar-O-Ween') {
+                weight = rarities[0].weight;
+            }
+
             rarityWeights.set(i, weight);
         }
 
@@ -201,7 +212,6 @@ export class BoarUtils {
             .sort((rarity1: RarityConfig, rarity2: RarityConfig) => {
                 return rarity1.weight - rarity2.weight;
             });
-        orderedRarities.unshift(config.rarityConfigs[config.rarityConfigs.length-1]);
 
         // Looping through all boar classes (Common -> Special)
         for (const rarity of orderedRarities) {

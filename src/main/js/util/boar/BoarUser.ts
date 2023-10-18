@@ -405,7 +405,7 @@ export class BoarUser {
                         itemsData.boars[boarID].lastBuys[1] = lastBuySell;
                         itemsData.boars[boarID].lastSells[1] = lastBuySell;
 
-                        if (rarityName !== 'Special') {
+                        if (rarityName !== 'Special' && rarityName !== 'Boar-O-Ween') {
                             let specialEdition = 0;
                             if (!itemsData.boars['bacteria']) {
                                 itemsData.boars['bacteria'] = new ItemData();
@@ -647,7 +647,6 @@ export class BoarUser {
             .sort((rarity1: RarityConfig, rarity2: RarityConfig) => {
                 return rarity1.weight - rarity2.weight;
             });
-        orderedRarities.unshift(config.rarityConfigs[config.rarityConfigs.length-1]);
 
         let numSpecial = 0;
         let numZeroBoars = 0;
