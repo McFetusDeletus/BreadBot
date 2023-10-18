@@ -2883,8 +2883,8 @@
       ]
     },
     {
-      "name": "Boar-O-Ween",
-      "pluralName": "Boar-O-Weens",
+      "name": "Spooky",
+      "pluralName": "Spookies",
       "weight": 0.98,
       "baseScore": 20,
       "fromDaily": false,

@@ -405,7 +405,7 @@ export class BoarUser {
                         itemsData.boars[boarID].lastBuys[1] = lastBuySell;
                         itemsData.boars[boarID].lastSells[1] = lastBuySell;
 
-                        if (rarityName !== 'Special' && rarityName !== 'Boar-O-Ween') {
+                        if (rarityName !== 'Special' && rarityName !== 'Spooky') {
                             let specialEdition = 0;
                             if (!itemsData.boars['bacteria']) {
                                 itemsData.boars['bacteria'] = new ItemData();
