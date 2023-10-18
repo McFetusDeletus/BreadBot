@@ -274,7 +274,8 @@
       "BoarBot exists in %@ different servers!",
       "You have a boar streak of %@! The higher your boar streak, the more boar blessings you'll have'!",
       "Want to suggest a new boar or feature? Join the server in my About Me!",
-      "BoarBot has a lot more to it than just running /boar daily! To see everything BoarBot has to offer, use /boar help!"
+      "BoarBot has a lot more to it than just running /boar daily! To see everything BoarBot has to offer, use /boar help!",
+      "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join the Discord server in my About Me!"
     ],
     "notificationServerPing": "<@&1001233916620972082> \n*Note: If you run /boar daily a second time, then click \"Enable Notifications\", you can receive your notifications in DMs instead. To disable this ping, un-react to the boar emoji in <#996887892737667204>*",
     "questCompletionBonus": "Full Completion Bonus:",
@@ -2610,16 +2611,14 @@
         "pluralName": "Normal Boars",
         "file": "NormalBoar.png",
         "description": "The original boar. Quite unremarkable.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "carrot": {
         "name": "Carrot Boar",
         "pluralName": "Carrot Boars",
         "file": "CarrotBoar.png",
         "description": "On the surface, it's indistinguishable from the grass around it. The only being capable of spotting them is Farmer Boar.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "sphere": {
         "name": "Crystal Boarb",
@@ -2627,32 +2626,28 @@
         "file": "Boarb.gif",
         "staticFile": "BoarbSTATIC.png",
         "description": "This boar inside this orb is said to have time-warping abilities. Encased in crystals, its powers are limited to telling others their future.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "creepy": {
         "name": "Creepy Boar",
         "pluralName": "Creepy Boars",
         "file": "CreepyBoar.png",
         "description": "While it may look strikingly similar to a normal boar at first glance, it's actually a paranormal being that lives inside the skin of recently deceased boars.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "minimumwage": {
         "name": "Minimum Wage Boar",
         "pluralName": "Minimum Wage Boars",
         "file": "MinimumWageBoar.png",
         "description": "One of the smartest boars in the universe. Nobody's quite sure why it works at a fast food restaurant, but there must be a reason.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "cowboy": {
         "name": "Cowboar",
         "pluralName": "Cowboars",
         "file": "CowboyBoar.png",
         "description": "This boar has unparalleled skill when it comes to lassoing and piloting horses. It also refuses to touch any modern technology.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "rickroll": {
         "name": "Rickroll Boar",
@@ -2660,32 +2655,35 @@
         "file": "RickrollBoar.gif",
         "staticFile": "RickrollBoarSTATIC.png",
         "description": "Spreads the word of Creator Boar. He'll never give you up, nor will he let you down. He certainly won't run around and... desert you.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "supernova": {
         "name": "Suboarnova",
         "pluralName": "Suboarnovas",
         "file": "Suboarnova.png",
         "description": "Some stars explode into this boar after they die out instead of a regular supernova. It's become a highly researched area of Boarstronomy.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
+      },
+      "zombie": {
+        "name": "Zomboar",
+        "pluralName": "Zomboars",
+        "file": "ZombieBoar.png",
+        "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way.",
+        "isSB": false
       },
       "bacteria": {
         "name": "Boarcterium",
         "pluralName": "Boarcteria",
         "file": "Boarcterium.png",
         "description": "The first boar ever created by Creator Boar. Catching a cold from this boar results in explosive symptoms.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "underwear": {
         "name": "Boarnderwear",
         "pluralName": "Boarnderwear",
         "file": "Boarnderwear.png",
         "description": "Children all around the world are disappointed when they open a gift excitedly just to get this boar. It appears as though it's been worn.",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       }
     },
     "badges": {
@@ -2694,16 +2692,14 @@
         "pluralName": "Boar Hunters",
         "file": "Hunter.png",
         "description": "Given to users that have collected all non-Special boars",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       },
       "athlete": {
         "name": "Boarthlete",
         "pluralName": "Boarthletes",
         "file": "Athlete.png",
         "description": "Given to users that are currently #1 on a leaderboard",
-        "isSB": false,
-        "blacklisted": false
+        "isSB": false
       }
     },
     "powerups": {
@@ -2713,7 +2709,6 @@
         "file": "MiracleCharm.png",
         "description": "Increases the number of Boar Blessings you have at 5% per charm (compounding).",
         "isSB": false,
-        "blacklisted": false,
         "rewardAmt": 1
       },
       "gift": {
@@ -2722,7 +2717,6 @@
         "file": "BoarGift.png",
         "description": "A gift that can be sent to and opened by other people. Contains boar bucks, boars, rare surprises, and more.",
         "isSB": false,
-        "blacklisted": false,
         "rewardAmt": 1,
         "outcomes": [
           {
@@ -2779,7 +2773,6 @@
         "file": "TransmutationCharge.png",
         "description": "Used to charge up the Transmutation Cell, which can be used to transmute a boar into a random boar of the next highest rarity.",
         "isSB": false,
-        "blacklisted": false,
         "rewardAmt": 1
       },
       "clone": {
@@ -2788,7 +2781,6 @@
         "file": "CloningSerum.png",
         "description": "Clones a boar of your choosing. Higher rarity boars are more difficult to clone than lower rarity boars.",
         "isSB": false,
-        "blacklisted": false,
         "rewardAmt": 1
       }
     }
@@ -2881,13 +2873,25 @@
     {
       "name": "Immaculate",
       "pluralName": "Immaculates",
-      "weight": 0,
+      "weight": 0.99,
       "baseScore": 0,
       "fromDaily": false,
       "enhancersNeeded": 0,
       "avgClones": 500,
       "boars": [
         "supernova"
+      ]
+    },
+    {
+      "name": "Boar-O-Ween",
+      "pluralName": "Boar-O-Weens",
+      "weight": 0.98,
+      "baseScore": 20,
+      "fromDaily": false,
+      "enhancersNeeded": 0,
+      "avgClones": 100,
+      "boars": [
+        "zombie"
       ]
     },
     {
@@ -2924,6 +2928,7 @@
     "rarity6": "#F300FF",
     "rarity7": "#00FFFB",
     "rarity8": "#ff6666,#ffb566,#fffa66,#74ff66,#666bff,#b966ff",
-    "rarity9": "#BC2326,#FF3136,#BC2326"
+    "rarity9": "#474747,#679311,#474747",
+    "rarity10": "#BC2326,#FF3136,#BC2326"
   }
 }
