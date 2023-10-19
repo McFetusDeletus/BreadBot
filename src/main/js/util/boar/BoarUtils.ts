@@ -155,7 +155,7 @@ export class BoarUtils {
                 weight = 0;
             }
 
-            if (isHalloWeek && rarities[i].name === 'Spooky') {
+            if (isHalloWeek && rarities[i].name === 'Wicked') {
                 weight = rarities[0].weight;
             }
 

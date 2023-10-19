@@ -2606,6 +2606,13 @@
   },
   "itemConfigs": {
     "boars": {
+      "zombie": {
+        "name": "Zomboar",
+        "pluralName": "Zomboars",
+        "file": "ZombieBoar.png",
+        "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way.",
+        "isSB": false
+      },
       "normal": {
         "name": "Normal Boar",
         "pluralName": "Normal Boars",
@@ -2662,13 +2669,6 @@
         "pluralName": "Suboarnovas",
         "file": "Suboarnova.png",
         "description": "Some stars explode into this boar after they die out instead of a regular supernova. It's become a highly researched area of Boarstronomy.",
-        "isSB": false
-      },
-      "zombie": {
-        "name": "Zomboar",
-        "pluralName": "Zomboars",
-        "file": "ZombieBoar.png",
-        "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way.",
         "isSB": false
       },
       "bacteria": {
@@ -2787,6 +2787,18 @@
   },
   "rarityConfigs": [
     {
+      "name": "Wicked",
+      "pluralName": "Wickeds",
+      "weight": 826,
+      "baseScore": 20,
+      "fromDaily": false,
+      "enhancersNeeded": 0,
+      "avgClones": 100,
+      "boars": [
+        "zombie"
+      ]
+    },
+    {
       "name": "Common",
       "pluralName": "Commons",
       "weight": 825,
@@ -2883,18 +2895,6 @@
       ]
     },
     {
-      "name": "Spooky",
-      "pluralName": "Spookies",
-      "weight": 0.98,
-      "baseScore": 20,
-      "fromDaily": false,
-      "enhancersNeeded": 0,
-      "avgClones": 100,
-      "boars": [
-        "zombie"
-      ]
-    },
-    {
       "name": "Special",
       "weight": 0,
       "baseScore": 0,
@@ -2920,15 +2920,15 @@
     "green": "#55FF55",
     "maintenance": "#FFFF00",
     "error": "#FF5555",
-    "rarity1": "#FFFFFF",
-    "rarity2": "#00FF0F",
-    "rarity3": "#0064FF",
-    "rarity4": "#6400FF",
-    "rarity5": "#FFC500",
-    "rarity6": "#F300FF",
-    "rarity7": "#00FFFB",
-    "rarity8": "#ff6666,#ffb566,#fffa66,#74ff66,#666bff,#b966ff",
-    "rarity9": "#474747,#679311,#474747",
+    "rarity1": "#474747,#679311,#474747",
+    "rarity2": "#FFFFFF",
+    "rarity3": "#00FF0F",
+    "rarity4": "#0064FF",
+    "rarity5": "#6400FF",
+    "rarity6": "#FFC500",
+    "rarity7": "#F300FF",
+    "rarity8": "#00FFFB",
+    "rarity9": "#ff6666,#ffb566,#fffa66,#74ff66,#666bff,#b966ff",
     "rarity10": "#BC2326,#FF3136,#BC2326"
   }
 }
