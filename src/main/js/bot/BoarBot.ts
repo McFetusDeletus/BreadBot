@@ -26,7 +26,6 @@ import {BoarUtils} from '../util/boar/BoarUtils';
 import {ItemsData} from './data/global/ItemsData';
 import {GitHubData} from './data/global/GitHubData';
 import {GuildData} from './data/global/GuildData';
-import v8 from 'v8';
 
 /**
  * {@link BoarBot BoarBot.ts}
@@ -206,8 +205,6 @@ export class BoarBot implements Bot {
 	 */
 	private startNotificationCron(): void {
 		new CronJob('0 0 * * *', async () => {
-			v8.writeHeapSnapshot();
-
 			const userDataFolder = this.getConfig().pathConfig.databaseFolder +
 				this.getConfig().pathConfig.userDataFolder;
 
@@ -236,24 +233,36 @@ export class BoarBot implements Bot {
 						this.getConfig().pathConfig.guildDataFolder;
 
 					switch (randMsgIndex) {
-						case 5:
+						case 5: {
 							randMsgStr = randMsgStr.replace(
 								'%@', Object.keys(this.getConfig().itemConfigs.boars).length.toLocaleString()
 							);
 							break;
-						case 7:
+						}
+
+						case 7: {
 							randMsgStr = randMsgStr.replace(
 								'%@', fs.readdirSync(userDataFolder).length.toLocaleString()
 							);
 							break;
-						case 16:
+						}
+
+						case 16: {
 							randMsgStr = randMsgStr.replace(
 								'%@', fs.readdirSync(guildDataFolder).length.toLocaleString()
 							);
 							break;
-						case 17:
+						}
+
+						case 17: {
 							randMsgStr = randMsgStr.replace('%@', boarUser.stats.general.boarStreak.toLocaleString());
 							break;
+						}
+
+						case 20: {
+							randMsgStr = msgStrs[0];
+							break;
+						}
 					}
 
 					const curDate = new Date();

@@ -729,7 +729,7 @@ export default class MarketSubcommand implements Subcommand {
         let hasEnoughRoom = true;
 
         const questData = DataHandlers.getGlobalData(DataHandlers.GlobalFile.Quest) as QuestData;
-        const isOwnOrder = this.firstInter.user.id !== orderInfo.data.userID;
+        const isOwnOrder = this.firstInter.user.id === orderInfo.data.userID;
 
         // This is meant to change whether items or bucks are returned
         // When cancelling, you get the opposite of what you wanted: your items back
