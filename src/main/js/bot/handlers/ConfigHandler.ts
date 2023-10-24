@@ -67,10 +67,6 @@ export class ConfigHandler {
      * @private
      */
     private async validateConfig(parsedConfig: BotConfig): Promise<boolean> {
-        if (parsedConfig.maintenanceMode) {
-            return true;
-        }
-
         const rarities = parsedConfig.rarityConfigs;
         const boars = parsedConfig.itemConfigs.boars;
         const boarIDs = Object.keys(boars);
@@ -199,7 +195,7 @@ export class ConfigHandler {
             passed = false;
         }
 
-        return passed;
+        return passed || parsedConfig.maintenanceMode;
     }
 
     /**

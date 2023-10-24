@@ -272,7 +272,7 @@
       "Did you know that a group of boar is called a sounder?",
       "Did you know that powerups spawn roughly every 2 hours? Use /boar help for more info!",
       "BoarBot exists in %@ different servers!",
-      "You have a boar streak of %@! The higher your boar streak, the more boar blessings you'll have'!",
+      "You have a boar streak of %@! The higher your boar streak, the more boar blessings you'll have!",
       "Want to suggest a new boar or feature? Join the server in my About Me!",
       "BoarBot has a lot more to it than just running /boar daily! To see everything BoarBot has to offer, use /boar help!",
       "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join the Discord server in my About Me!"
@@ -1033,7 +1033,7 @@
     "marketRange": 2,
     "orderExpire": 604800000,
     "notificationButtonDelay": 15000,
-    "questFullAmt": 2,
+    "questFullAmt": 3,
     "questImgSize": [
       1127,
       1500
@@ -2361,20 +2361,20 @@
       "valType": "rarity",
       "questVals": [
         [
-          1,
-          1
-        ],
-        [
           2,
           2
         ],
         [
           3,
-          1
+          3
         ],
         [
           4,
-          2
+          1
+        ],
+        [
+          5,
+          1
         ]
       ]
     },
@@ -2387,11 +2387,11 @@
       "questVals": [
         [
           10,
-          1
+          3
         ],
         [
           25,
-          2
+          5
         ],
         [
           50,
@@ -2399,7 +2399,7 @@
         ],
         [
           100,
-          2
+          1
         ]
       ]
     },
@@ -2412,11 +2412,11 @@
       "questVals": [
         [
           10,
-          1
+          3
         ],
         [
           25,
-          2
+          5
         ],
         [
           50,
@@ -2424,7 +2424,7 @@
         ],
         [
           100,
-          2
+          1
         ]
       ]
     },
@@ -2461,20 +2461,20 @@
       "valType": "rarity",
       "questVals": [
         [
-          1,
-          2
-        ],
-        [
           2,
-          4
+          3
         ],
         [
           3,
-          1
+          5
         ],
         [
           4,
-          2
+          1
+        ],
+        [
+          5,
+          1
         ]
       ]
     },
@@ -2499,7 +2499,7 @@
         ],
         [
           4,
-          2
+          1
         ]
       ]
     },
@@ -2512,11 +2512,11 @@
       "questVals": [
         [
           1,
-          1
+          3
         ],
         [
           2,
-          2
+          5
         ],
         [
           3,
@@ -2524,7 +2524,7 @@
         ],
         [
           4,
-          2
+          1
         ]
       ]
     },
@@ -2549,7 +2549,7 @@
         ],
         [
           16,
-          3
+          1
         ]
       ]
     },
@@ -2561,20 +2561,20 @@
       "valType": "time",
       "questVals": [
         [
-          5000,
+          6000,
           25
         ],
         [
-          3750,
+          4500,
           50
         ],
         [
-          2500,
+          3000,
           1
         ],
         [
-          1250,
-          3
+          1500,
+          1
         ]
       ]
     },
@@ -2587,11 +2587,11 @@
       "questVals": [
         [
           1,
-          1
+          2
         ],
         [
           2,
-          2
+          3
         ],
         [
           4,
@@ -2599,7 +2599,7 @@
         ],
         [
           6,
-          2
+          1
         ]
       ]
     }

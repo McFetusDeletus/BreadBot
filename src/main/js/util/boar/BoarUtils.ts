@@ -151,7 +151,7 @@ export class BoarUtils {
             const curDate = new Date();
             const isHalloWeek = curDate.getMonth() === 9 && curDate.getDate() >= 24;
 
-            if (isHalloWeek && i === 0) {
+            if (isHalloWeek && rarities[i].name === 'Common') {
                 weight = 0;
             }
 
