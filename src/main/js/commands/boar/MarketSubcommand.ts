@@ -729,7 +729,6 @@ export default class MarketSubcommand implements Subcommand {
         let hasEnoughRoom = true;
 
         const questData = DataHandlers.getGlobalData(DataHandlers.GlobalFile.Quest) as QuestData;
-        const isOwnOrder = this.firstInter.user.id === orderInfo.data.userID;
 
         // This is meant to change whether items or bucks are returned
         // When cancelling, you get the opposite of what you wanted: your items back
@@ -746,7 +745,7 @@ export default class MarketSubcommand implements Subcommand {
         }
 
         // Counts progress toward spend bucks quest if claiming a buy order
-        if (!isSell && isClaim && !isOwnOrder) {
+        if (!isSell && isClaim) {
             const spendBucksIndex = questData.curQuestIDs.indexOf('spendBucks');
             this.boarUser.stats.quests.progress[spendBucksIndex] += numToReturn * orderInfo.data.price;
         }
@@ -784,7 +783,7 @@ export default class MarketSubcommand implements Subcommand {
             this.boarUser.stats.general.totalBoars += numToReturn;
             this.boarUser.itemCollection.boars[orderInfo.id].num += numToReturn;
 
-            const canCollectBoarQuest = collectBoarIndex >= 0 && isClaim && !isOwnOrder &&
+            const canCollectBoarQuest = collectBoarIndex >= 0 && isClaim &&
                 Math.floor(collectBoarIndex / 2) + 1 === BoarUtils.findRarity(orderInfo.id, this.config)[0];
 
             // Counts progress toward collecting boar rarity quest if claiming a boar buy order
@@ -811,10 +810,8 @@ export default class MarketSubcommand implements Subcommand {
             }
         } else if (isClaim) {
             // Counts collect bucks quest progress if claiming a sell order
-            if (!isOwnOrder) {
-                const collectBucksIndex = questData.curQuestIDs.indexOf('collectBucks');
-                this.boarUser.stats.quests.progress[collectBucksIndex] += numToReturn * orderInfo.data.price;
-            }
+            const collectBucksIndex = questData.curQuestIDs.indexOf('collectBucks');
+            this.boarUser.stats.quests.progress[collectBucksIndex] += numToReturn * orderInfo.data.price;
 
             this.boarUser.stats.general.boarScore += numToReturn * orderInfo.data.price;
         } else {

@@ -20,6 +20,10 @@ export class GeneralStats {
     public highestMulti = 0;
     public notificationsOn = false;
     public notificationChannel = '';
+    public spookEditions?: number[];
+    public spook3Stage?: number;
+    public spook5Stage?: number;
+    public truths?: boolean[];
     public unbanTime?: number; // No longer used, now stored globally
     public deletionTime?: number; // No longer used, now stored globally
 }

@@ -580,7 +580,7 @@ export class CollectionImageGenerator {
 
         let cellImagePath = pathConfig.collAssets + pathConfig.cellNone;
         let chargeStr = 'No';
-        let chargeColor = colorConfig.rarity1;
+        let chargeColor = colorConfig.font;
 
         [...rarityConfigs].reverse().every((rarityConfig: RarityConfig, index: number) => {
             const notEnoughEnhancers = rarityConfig.enhancersNeeded === 0 ||
@@ -761,12 +761,12 @@ export class CollectionImageGenerator {
             if (i < 3) {
                 await CanvasUtils.drawText(
                     ctx, strConfig.collEnhancedLabel, nums.collEnhancedLabelPositions[i], mediumFont, 'center',
-                    colorConfig.font, undefined, false, [rarityConfig[i].pluralName], [colorConfig['rarity' + (i+1)]]
+                    colorConfig.font, undefined, false, [rarityConfig[i+1].pluralName], [colorConfig['rarity' + (i+2)]]
                 );
             } else {
                 await CanvasUtils.drawText(
                     ctx, rarityConfig[i].pluralName, nums.collEnhancedLabelPositions[i],
-                    mediumFont, 'center', colorConfig['rarity' + (i+1)]
+                    mediumFont, 'center', colorConfig['rarity' + (i+2)]
                 );
             }
 
