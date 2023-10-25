@@ -115,8 +115,8 @@ export class BoarUser {
 
         const cloneRaritiesNew = userData.itemCollection.powerups.clone.raritiesUsed as number[];
         const cloneRarities = this.itemCollection.powerups.clone.raritiesUsed as number[];
-        this.stats.quests.progress[cloneRarityIndex] += cloneRarities[Math.floor(cloneRarityIndex / 2)] -
-            cloneRaritiesNew[Math.floor(cloneRarityIndex / 2)];
+        this.stats.quests.progress[cloneRarityIndex] += cloneRarities[Math.floor(cloneRarityIndex / 2) + 1] -
+            cloneRaritiesNew[Math.floor(cloneRarityIndex / 2) + 1];
 
         this.stats.quests.progress[sendGiftsIndex] += this.itemCollection.powerups.gift.numUsed -
             userData.itemCollection.powerups.gift.numUsed;
@@ -253,7 +253,12 @@ export class BoarUser {
         if (!this.itemCollection.powerups.clone) {
             this.itemCollection.powerups.clone = new CollectedPowerup();
             this.itemCollection.powerups.clone.numSuccess = 0;
-            this.itemCollection.powerups.clone.raritiesUsed = [0,0,0,0,0,0,0];
+            this.itemCollection.powerups.clone.raritiesUsed = [0,0,0,0,0,0,0,0,0];
+        }
+
+        if ((this.itemCollection.powerups.clone.raritiesUsed as number[]).length === 7) {
+            (this.itemCollection.powerups.clone.raritiesUsed as number[]).push(0);
+            (this.itemCollection.powerups.clone.raritiesUsed as number[]).unshift(0);
         }
 
         this.itemCollection.powerups.miracle.numTotal = Math.max(
