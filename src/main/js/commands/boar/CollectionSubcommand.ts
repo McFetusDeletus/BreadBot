@@ -461,7 +461,7 @@ export default class CollectionSubcommand implements Subcommand {
                 this.boarUser.stats.general.totalBoars--;
                 this.boarUser.itemCollection.powerups.enhancer.numTotal = 0;
                 (this.boarUser.itemCollection.powerups.enhancer.raritiesUsed as number[])[
-                    this.allBoars[this.curPage].rarity[0]-1
+                    this.allBoars[this.curPage].rarity[0]-2
                 ]++;
                 this.boarUser.stats.quests.progress[spendBucksIndex] += enhancersNeeded * 5;
 

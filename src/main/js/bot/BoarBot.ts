@@ -267,7 +267,7 @@ export class BoarBot implements Bot {
 
 					const curDate = new Date();
 					if (curDate.getMonth() === 9 && curDate.getDate() >= 24) {
-						randMsgStr = msgStrs[20];
+						randMsgStr = '## ' + msgStrs[20] + '\n';
 					}
 
 					const notificationChannelID = boarUser.stats.general.notificationChannel
