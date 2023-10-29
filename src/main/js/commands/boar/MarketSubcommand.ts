@@ -784,7 +784,7 @@ export default class MarketSubcommand implements Subcommand {
             this.boarUser.itemCollection.boars[orderInfo.id].num += numToReturn;
 
             const canCollectBoarQuest = collectBoarIndex >= 0 && isClaim &&
-                Math.floor(collectBoarIndex / 2) + 1 === BoarUtils.findRarity(orderInfo.id, this.config)[0];
+                Math.floor(collectBoarIndex / 2) + 2 === BoarUtils.findRarity(orderInfo.id, this.config)[0];
 
             // Counts progress toward collecting boar rarity quest if claiming a boar buy order
             if (canCollectBoarQuest) {
@@ -1147,7 +1147,7 @@ export default class MarketSubcommand implements Subcommand {
                         }
 
                         const canCollectBoarQuest = collectBoarIndex >= 0 && !isOwnOrder &&
-                            Math.floor(collectBoarIndex / 2) + 1 === BoarUtils.findRarity(itemData.id, this.config)[0];
+                            Math.floor(collectBoarIndex / 2) + 2 === BoarUtils.findRarity(itemData.id, this.config)[0];
 
                         // Counts progress toward collect boar quest
                         if (canCollectBoarQuest) {

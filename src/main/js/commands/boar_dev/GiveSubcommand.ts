@@ -72,6 +72,16 @@ export default class GiveSubcommand implements Subcommand {
      * @param interaction - Used to get the entered value to autocomplete
      */
     public async autocomplete(interaction: AutocompleteInteraction): Promise<void> {
+        if (!this.config.devs.includes(interaction.user.id)) {
+            await interaction.respond(
+                [{
+                    name: "No Access",
+                    value: "none"
+                }]
+            );
+            return;
+        }
+
         const strConfig = this.config.stringConfig;
 
         const focusedValue = interaction.options.getFocused().toLowerCase();

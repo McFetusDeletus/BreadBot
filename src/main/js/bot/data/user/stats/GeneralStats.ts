@@ -21,8 +21,8 @@ export class GeneralStats {
     public notificationsOn = false;
     public notificationChannel = '';
     public spookEditions?: number[];
+    public spook2Stage?: number;
     public spook3Stage?: number;
-    public spook5Stage?: number;
     public truths?: boolean[];
     public unbanTime?: number; // No longer used, now stored globally
     public deletionTime?: number; // No longer used, now stored globally
