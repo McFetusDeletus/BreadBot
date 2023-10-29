@@ -449,7 +449,7 @@ export class BoarUser {
                         ? scores[i]
                         : 0;
 
-                    if (collectBoarIndex >= 0 && Math.floor(collectBoarIndex / 2) + 1 === rarityInfos[i][0]) {
+                    if (collectBoarIndex >= 0 && Math.floor(collectBoarIndex / 2) + 2 === rarityInfos[i][0]) {
                         this.stats.quests.progress[collectBoarIndex]++;
                     }
 

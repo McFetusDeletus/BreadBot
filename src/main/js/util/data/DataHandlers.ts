@@ -320,7 +320,7 @@ export class DataHandlers {
                 delete boardsData.uniques.userData[userID];
             }
 
-            if (sbUniques > 0) {
+            if (uniques + sbUniques > 0) {
                 boardsData.uniquesSB.userData[userID] = [username, uniques + sbUniques];
             } else {
                 delete boardsData.uniquesSB.userData[userID];

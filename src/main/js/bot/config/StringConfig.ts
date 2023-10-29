@@ -237,4 +237,5 @@ export class StringConfig {
     public readonly githubImg = '' as string;
     public readonly supportLink = '' as string;
     public readonly supportStr = '' as string;
+    public readonly spookMessages = [] as string[];
 }

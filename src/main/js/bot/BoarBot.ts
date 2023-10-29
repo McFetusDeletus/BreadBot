@@ -181,6 +181,7 @@ export class BoarBot implements Bot {
 			this.startNotificationCron();
 			this.startQuestRefreshCron();
 			this.startPowCron();
+			this.startSpookCrons();
 			this.startGlobalInterval();
 
 			(this.client.user as ClientUser).setPresence({
@@ -298,13 +299,32 @@ export class BoarBot implements Bot {
 	}
 
 	/**
-	 * Starts CronJob that refreshes weekly quests at 23:59 on Saturday UTC
+	 * Starts CronJob that sends spook messages for boar-o-ween
 	 *
 	 * @private
 	 */
-	private startQuestRefreshCron() {
-		new CronJob('59 23 * * 6', async () => {
-			DataHandlers.updateQuestData(this.getConfig());
+	private async startSpookCrons() {
+		const spookChannel = await this.client.channels.fetch(this.getConfig().spookChannel) as TextChannel;
+		const spookMessages = this.getConfig().stringConfig.spookMessages;
+
+		new CronJob('30 21 31 9 *', async () => {
+			await spookChannel.send(spookMessages[0]);
+		}, null, true, 'UTC');
+
+		new CronJob('30 22 31 9 *', async () => {
+			await spookChannel.send(spookMessages[1]);
+		}, null, true, 'UTC');
+
+		new CronJob('30 23 31 9 *', async () => {
+			await spookChannel.send(spookMessages[2]);
+		}, null, true, 'UTC');
+
+		new CronJob('30 0 1 10 *', async () => {
+			await spookChannel.send(spookMessages[3]);
+		}, null, true, 'UTC');
+
+		new CronJob('30 1 1 10 *', async () => {
+			await spookChannel.send(spookMessages[4]);
 		}, null, true, 'UTC');
 	}
 
@@ -324,6 +344,17 @@ export class BoarBot implements Bot {
 
 			new PowerupEvent();
 		}, null, true);
+	}
+
+	/**
+	 * Starts CronJob that refreshes weekly quests at 23:59 on Saturday UTC
+	 *
+	 * @private
+	 */
+	private startQuestRefreshCron() {
+		new CronJob('59 23 * * 6', async () => {
+			DataHandlers.updateQuestData(this.getConfig());
+		}, null, true, 'UTC');
 	}
 
 	/**

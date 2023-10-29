@@ -101,6 +101,17 @@ export default class DailySubcommand implements Subcommand {
                 // Adjusts weights in accordance to multiplier
                 rarityWeights = this.applyMultiplier(userMultiplier, rarityWeights);
 
+                const hasAllTruths = boarUser.stats.general.truths &&
+                    !boarUser.stats.general.truths.includes(false);
+
+                if (hasAllTruths && userMultiplier > 100000) {
+                    const totalWeight = [...rarityWeights.values()].reduce((sum: number, val: number) => {
+                        return sum + val;
+                    });
+
+                    rarityWeights.set(9, totalWeight / 100);
+                }
+
                 // Probability of rolling extra boars
                 const extraVals = [
                     Math.min(userMultiplier / 10, 100),

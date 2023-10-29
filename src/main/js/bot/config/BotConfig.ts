@@ -44,6 +44,11 @@ export class BotConfig {
     public defaultChannel = '' as string;
 
     /**
+     * The {@link TextChannel} ID the channel to send spook messages to
+     */
+    public spookChannel = '' as string;
+
+    /**
      * The {@link PathConfig paths} of all files/folders the bot accesses
      */
     public readonly pathConfig = new PathConfig();
