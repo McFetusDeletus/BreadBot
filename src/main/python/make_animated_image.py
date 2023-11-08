@@ -32,6 +32,7 @@ main_image = Image.open(main_image_path)
 
 # Stores all newly processed frames
 frames = []
+durations = []
 
 # Loops through each animation frame, applying overlays, underlays, and text
 for frame in ImageSequence.Iterator(main_image):
@@ -45,13 +46,14 @@ for frame in ImageSequence.Iterator(main_image):
     new_frame.paste(frame, item_pos)
 
     frames.append(new_frame)
+    durations.append(frame.info['duration'])
 
 # Formatting the result to work with JS
 
 output = BytesIO()
 frames[0].save(
     output, format='GIF', save_all=True, append_images=frames[1:],
-    duration=main_image.info['duration'], loop=0, disposal=2
+    duration=durations, loop=0, disposal=2
 )
 img_data = output.getvalue()
 

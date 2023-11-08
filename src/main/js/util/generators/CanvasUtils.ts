@@ -79,7 +79,9 @@ export class CanvasUtils {
                 totalChars += (word + ' ').length;
             }
 
-            lines.push(curLine.trim());
+            if (curLine.trim() !== '') {
+                lines.push(curLine.trim());
+            }
 
             newHeight -= lineHeight * (lines.length-1) / 2;
 

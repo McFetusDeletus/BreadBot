@@ -179,7 +179,7 @@ export class LeaderboardImageGenerator {
             if (bannedUserIDs.includes(userID)) {
                 username = strConfig.deletedUsername;
                 await Queue.addQueue(async () => {
-                        await DataHandlers.removeLeaderboardUser(userID)
+                    await DataHandlers.removeLeaderboardUser(userID);
                 }, 'top_rem_banned' + userID + 'global').catch((err: unknown) => {
                     throw err;
                 });

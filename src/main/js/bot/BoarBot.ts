@@ -435,7 +435,9 @@ export class BoarBot implements Bot {
 	private async removeWipeUsers(): Promise<void> {
 		await Queue.addQueue(async () => {
 			try {
-				const wipeUsers = DataHandlers.getGlobalData(DataHandlers.GlobalFile.WipeUsers) as Record<string, number>;
+				const wipeUsers = DataHandlers.getGlobalData(
+					DataHandlers.GlobalFile.WipeUsers
+				) as Record<string, number>;
 				const itemsData = DataHandlers.getGlobalData(DataHandlers.GlobalFile.Items) as ItemsData;
 				const userDataFolder = this.getConfig().pathConfig.databaseFolder +
 					this.getConfig().pathConfig.userDataFolder;
@@ -443,6 +445,7 @@ export class BoarBot implements Bot {
 				for (const userID of Object.keys(wipeUsers)) {
 					if (wipeUsers[userID] < Date.now()) {
 						try {
+							await DataHandlers.removeLeaderboardUser(userID);
 							fs.rmSync(userDataFolder + userID + '.json');
 						} catch (err: unknown) {
 							LogDebug.handleError(err);

@@ -654,6 +654,7 @@ export class BoarUser {
             });
 
         let numSpecial = 0;
+        let numEvent = 0;
         let numZeroBoars = 0;
         let maxUniques = 0;
 
@@ -661,7 +662,7 @@ export class BoarUser {
         const isSBServer = guildData?.isSBServer;
 
         for (const rarity of orderedRarities) {
-            if (rarity.name !== 'Special') {
+            if (rarity.name !== 'Special' && rarity.name !== 'Wicked') {
                 maxUniques += rarity.boars.length;
             }
         }
@@ -689,8 +690,14 @@ export class BoarUser {
                 delete this.itemCollection.boars[curBoarID];
                 this.itemCollection.boars[curBoarID] = curBoarData;
 
-                if (rarity.name == 'Special') {
+                if (rarity.name === 'Special') {
                     numSpecial++;
+                    continue;
+                }
+
+                if (rarity.name === 'Wicked') {
+                    numEvent++;
+                    continue;
                 }
 
                 if (this.itemCollection.boars[curBoarID].num == 0) {
@@ -702,7 +709,7 @@ export class BoarUser {
             }
         }
 
-        if (obtainedBoars.length-numSpecial-numZeroBoars >= maxUniques) {
+        if (obtainedBoars.length-numSpecial-numZeroBoars-numEvent >= maxUniques) {
             await this.addBadge('hunter', interaction, true);
         } else {
             await this.removeBadge('hunter', interaction, true);

@@ -58,7 +58,7 @@ export default class GiftSubcommand implements Subcommand {
                 boarUser = new BoarUser(this.interaction.user);
 
                 // Tells user they don't have any gifts
-                if (boarUser.itemCollection.powerups.gift.numTotal <= 0) {
+                if (!boarUser.itemCollection.powerups.gift || boarUser.itemCollection.powerups.gift.numTotal <= 0) {
                     await Replies.handleReply(
                         this.interaction, this.config.stringConfig.giftNone, this.config.colorConfig.error
                     );
