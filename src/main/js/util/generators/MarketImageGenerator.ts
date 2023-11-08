@@ -1,4 +1,4 @@
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 import {BotConfig} from '../../bot/config/BotConfig';
 import {AttachmentBuilder} from 'discord.js';
 import {CanvasUtils} from './CanvasUtils';
