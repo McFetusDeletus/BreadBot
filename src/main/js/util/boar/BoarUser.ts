@@ -662,7 +662,7 @@ export class BoarUser {
         const isSBServer = guildData?.isSBServer;
 
         for (const rarity of orderedRarities) {
-            if (rarity.name !== 'Special' && rarity.name !== 'Wicked') {
+            if (rarity.name !== 'Special' && rarity.name !== 'Wicked' && rarity.name !== 'Upper Council') {
                 maxUniques += rarity.boars.length;
             }
         }
