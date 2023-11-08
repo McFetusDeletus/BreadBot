@@ -3274,10 +3274,10 @@ export default class MarketSubcommand implements Subcommand {
                 this.optionalRows[0].components[1].setDisabled(nonFilledSells === 0);
 
                 // Enables buy order button
-                this.optionalRows[1].components[0].setDisabled(false);
+                this.optionalRows[1].components[0].setDisabled(this.boarUser.stats.general.firstDaily === 0);
 
                 // Enables sell order button
-                this.optionalRows[1].components[1].setDisabled(false);
+                this.optionalRows[1].components[1].setDisabled(this.boarUser.stats.general.firstDaily === 0);
 
                 if (isSpecial) {
                     let selectOptions = [] as SelectMenuComponentOptionData[];

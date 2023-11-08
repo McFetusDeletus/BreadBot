@@ -104,7 +104,7 @@ export default class DailySubcommand implements Subcommand {
                 const hasAllTruths = boarUser.stats.general.truths &&
                     !boarUser.stats.general.truths.includes(false);
 
-                if (hasAllTruths && userMultiplier > 100000) {
+                if (hasAllTruths && userMultiplier > 25000) {
                     const totalWeight = [...rarityWeights.values()].reduce((sum: number, val: number) => {
                         return sum + val;
                     });
