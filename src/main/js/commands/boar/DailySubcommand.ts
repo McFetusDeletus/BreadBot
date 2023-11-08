@@ -104,12 +104,14 @@ export default class DailySubcommand implements Subcommand {
                 const hasAllTruths = boarUser.stats.general.truths &&
                     !boarUser.stats.general.truths.includes(false);
 
-                if (hasAllTruths && userMultiplier > 25000) {
+                if (hasAllTruths && boarUser.itemCollection.powerups.miracle.numActive as number > 0) {
                     const totalWeight = [...rarityWeights.values()].reduce((sum: number, val: number) => {
                         return sum + val;
                     });
 
-                    rarityWeights.set(9, totalWeight / 100);
+                    // Increases chance of truth boars until it's guaranteed at 10m blessings
+                    // .01% at 1k | .1% at 10k | 1% at 100k | 10% at 1m | 100% at 10m
+                    rarityWeights.set(9, totalWeight / (10000000 / userMultiplier));
                 }
 
                 // Probability of rolling extra boars

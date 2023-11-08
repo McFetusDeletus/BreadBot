@@ -1,4 +1,4 @@
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 
 /**
  * {@link CanvasUtils CanvasUtils.ts}
@@ -24,7 +24,7 @@ export class CanvasUtils {
      * @param width - Width to wrap/shrink at
      */
     public static drawText(
-        ctx: Canvas.SKRSContext2D,
+        ctx: Canvas.CanvasRenderingContext2D,
         text: string,
         pos: [number, number],
         font: string,
@@ -168,7 +168,7 @@ export class CanvasUtils {
      * @private
      */
     private static drawColoredText(
-        ctx: Canvas.SKRSContext2D,
+        ctx: Canvas.CanvasRenderingContext2D,
         text: string,
         align: string,
         pos: [number, number],
@@ -280,7 +280,7 @@ export class CanvasUtils {
     }
 
     private static applyTextGradient(
-        ctx: Canvas.SKRSContext2D, text: string, pos: [number, number], color: string
+        ctx: Canvas.CanvasRenderingContext2D, text: string, pos: [number, number], color: string
     ): void {
         if (text.length === 0) return;
 
@@ -344,7 +344,7 @@ export class CanvasUtils {
      * @param diameter - Diameter of circle
      */
     public static drawCircleImage(
-        ctx: Canvas.SKRSContext2D,
+        ctx: Canvas.CanvasRenderingContext2D,
         img: Canvas.Image,
         pos: number[],
         diameter: number
@@ -370,7 +370,7 @@ export class CanvasUtils {
      * @param color - Color of the line
      */
     public static drawLine(
-        ctx: Canvas.SKRSContext2D,
+        ctx: Canvas.CanvasRenderingContext2D,
         pos1: [number, number],
         pos2: [number, number],
         width: number,
@@ -403,7 +403,7 @@ export class CanvasUtils {
      * @param color - Color of rectangle
      */
     public static drawRect(
-        ctx: Canvas.SKRSContext2D,
+        ctx: Canvas.CanvasRenderingContext2D,
         pos: [number, number],
         size: [number, number],
         color: string
