@@ -1,5 +1,5 @@
 import {BotConfig} from '../../bot/config/BotConfig';
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 import {CanvasUtils} from './CanvasUtils';
 import {AttachmentBuilder} from 'discord.js';
 import {BoarUser} from '../boar/BoarUser';

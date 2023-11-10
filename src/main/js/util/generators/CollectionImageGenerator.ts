@@ -1,4 +1,4 @@
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 import {BotConfig} from '../../bot/config/BotConfig';
 import {BoarUtils} from '../boar/BoarUtils';
 import {CanvasUtils} from './CanvasUtils';
@@ -810,7 +810,7 @@ export class CollectionImageGenerator {
      *
      * @param ctx - CanvasRenderingContext2D
      */
-    public async drawTopBar(ctx: Canvas.SKRSContext2D): Promise<void> {
+    public async drawTopBar(ctx: Canvas.CanvasRenderingContext2D): Promise<void> {
         const strConfig = this.config.stringConfig;
         const pathConfig = this.config.pathConfig;
         const nums = this.config.numberConfig;

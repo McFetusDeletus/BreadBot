@@ -1,7 +1,7 @@
 import {PromptTypeConfig} from '../../bot/config/prompts/PromptTypeConfig';
 import {PromptConfig} from '../../bot/config/prompts/PromptConfig';
 import {BotConfig} from '../../bot/config/BotConfig';
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 import {CanvasUtils} from './CanvasUtils';
 import {AttachmentBuilder} from 'discord.js';
 import {BoarBotApp} from '../../BoarBotApp';
@@ -166,7 +166,7 @@ export class PowerupImageGenerator {
     }
 
     private static async makeBaseHeaderFooter(
-        ctx: Canvas.SKRSContext2D, powerupTypeID: string, title: string, config: BotConfig
+        ctx: Canvas.CanvasRenderingContext2D, powerupTypeID: string, title: string, config: BotConfig
     ): Promise<void> {
         const strConfig = config.stringConfig;
         const pathConfig = config.pathConfig;
