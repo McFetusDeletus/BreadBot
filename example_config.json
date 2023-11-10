@@ -2792,6 +2792,8 @@
       "weight": 826,
       "baseScore": 20,
       "fromDaily": false,
+      "hunterNeed": false,
+      "givesSpecial": false,
       "enhancersNeeded": 0,
       "avgClones": 100,
       "boars": [
@@ -2804,6 +2806,8 @@
       "weight": 825,
       "baseScore": 1,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 1,
       "avgClones": 1,
       "boars": [
@@ -2816,6 +2820,8 @@
       "weight": 100,
       "baseScore": 10,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 2,
       "avgClones": 2,
       "boars": [
@@ -2828,6 +2834,8 @@
       "weight": 40,
       "baseScore": 25,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 3,
       "avgClones": 5,
       "boars": [
@@ -2840,6 +2848,8 @@
       "weight": 20,
       "baseScore": 50,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 5,
       "avgClones": 10,
       "boars": [
@@ -2852,6 +2862,8 @@
       "weight": 10,
       "baseScore": 100,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 10,
       "avgClones": 20,
       "boars": [
@@ -2864,6 +2876,8 @@
       "weight": 4,
       "baseScore": 250,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 18,
       "avgClones": 50,
       "boars": [
@@ -2876,6 +2890,8 @@
       "weight": 1,
       "baseScore": 1000,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 30,
       "avgClones": 200,
       "boars": [
@@ -2888,6 +2904,8 @@
       "weight": 0.99,
       "baseScore": 0,
       "fromDaily": false,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 0,
       "avgClones": 500,
       "boars": [
@@ -2899,6 +2917,8 @@
       "weight": 0,
       "baseScore": 0,
       "fromDaily": false,
+      "hunterNeed": false,
+      "givesSpecial": false,
       "enhancersNeeded": 0,
       "boars": [
         "bacteria",
