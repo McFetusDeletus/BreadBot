@@ -275,7 +275,7 @@
       "You have a boar streak of %@! The higher your boar streak, the more boar blessings you'll have!",
       "Want to suggest a new boar or feature? Join the server in my About Me!",
       "BoarBot has a lot more to it than just running /boar daily! To see everything BoarBot has to offer, use /boar help!",
-      "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join the Discord server in my About Me!"
+      "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join our Discord server: https://discord.gg/DXSwKHYrCa"
     ],
     "notificationServerPing": "<@&1001233916620972082> \n*Note: If you run /boar daily a second time, then click \"Enable Notifications\", you can receive your notifications in DMs instead. To disable this ping, un-react to the boar emoji in <#996887892737667204>*",
     "questCompletionBonus": "Full Completion Bonus:",
@@ -298,7 +298,14 @@
     "pullLink": "https://api.github.com/repos/BoarBotDevs/BoarBot/pulls?state=closed",
     "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     "supportLink": "https://www.patreon.com/BoarBotDevs",
-    "supportStr": "Like playing BoarBot? Support us on our Patreon!\n"
+    "supportStr": "Like playing BoarBot? Support us on our Patreon!\n",
+    "spookMessages": [
+      "Welcome to Boar-O-Ween! Just like last year, Spooky Boar will be providing us with **five** unique hunts, all rewarding new halloween-themed boars! Make sure you stick until the end because the last hunt had the most time and effort poured into it! Without further ado, let's get started.\n\nFirst video: https://youtu.be/HIHqgEmjA4k",
+      "Onto the second hunt! You may still be solving the first hunt, but Spooky Boar insisted on his schedule. Good luck! *Ignore where Spooky Boar said \"closing out\". He rearranged the hunt order last minute*\n\nSecond video: https://youtu.be/ZNgPfizDuug",
+      "Not entirely sure why Spooky Boar wanted everyone to go through his nostalgia trip with him on that previous hunt. Anyways, this next one is a fan favorite... Trivia!\n\nThird video: https://youtu.be/5VflhcH1BCo",
+      "Uh... Spooky Boar needs help with his homework? Maybe you could help him out with that? *Please check the video description*\n\nFourth video: https://youtu.be/6yoY79n6WsY",
+      "The final hunt! Take a trip through Spooky Boar's Manor! Did you know he's lived there for over 100 years?\n\nFifth video: https://youtu.be/4B9tX43uk8Q"
+    ]
   },
   "numberConfig": {
     "originPos": [
@@ -2792,6 +2799,8 @@
       "weight": 826,
       "baseScore": 20,
       "fromDaily": false,
+      "hunterNeed": false,
+      "givesSpecial": false,
       "enhancersNeeded": 0,
       "avgClones": 100,
       "boars": [
@@ -2804,6 +2813,8 @@
       "weight": 825,
       "baseScore": 1,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 1,
       "avgClones": 1,
       "boars": [
@@ -2816,6 +2827,8 @@
       "weight": 100,
       "baseScore": 10,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 2,
       "avgClones": 2,
       "boars": [
@@ -2828,6 +2841,8 @@
       "weight": 40,
       "baseScore": 25,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 3,
       "avgClones": 5,
       "boars": [
@@ -2840,6 +2855,8 @@
       "weight": 20,
       "baseScore": 50,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 5,
       "avgClones": 10,
       "boars": [
@@ -2852,6 +2869,8 @@
       "weight": 10,
       "baseScore": 100,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 10,
       "avgClones": 20,
       "boars": [
@@ -2864,6 +2883,8 @@
       "weight": 4,
       "baseScore": 250,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 18,
       "avgClones": 50,
       "boars": [
@@ -2876,6 +2897,8 @@
       "weight": 1,
       "baseScore": 1000,
       "fromDaily": true,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 30,
       "avgClones": 200,
       "boars": [
@@ -2888,6 +2911,8 @@
       "weight": 0.99,
       "baseScore": 0,
       "fromDaily": false,
+      "hunterNeed": true,
+      "givesSpecial": true,
       "enhancersNeeded": 0,
       "avgClones": 500,
       "boars": [
@@ -2899,6 +2924,8 @@
       "weight": 0,
       "baseScore": 0,
       "fromDaily": false,
+      "hunterNeed": false,
+      "givesSpecial": false,
       "enhancersNeeded": 0,
       "boars": [
         "bacteria",

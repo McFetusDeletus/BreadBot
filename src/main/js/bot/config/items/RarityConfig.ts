@@ -15,4 +15,6 @@ export class RarityConfig {
     public readonly enhancersNeeded = 0 as number;
     public readonly avgClones = 0 as number;
     public readonly boars = [] as string[];
+    public readonly hunterNeed = false as boolean;
+    public readonly givesSpecial = false as boolean;
 }

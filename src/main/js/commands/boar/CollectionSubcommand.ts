@@ -499,7 +499,7 @@ export default class CollectionSubcommand implements Subcommand {
         }
 
         // Adds transmuted boar to collection and gets the edition of that boar
-        const editions = await this.boarUser.addBoars([enhancedBoar], this.firstInter, this.config);
+        const bacteriaEditions = await this.boarUser.addBoars([enhancedBoar], this.firstInter, this.config);
 
         await this.getUserInfo();
 
@@ -517,9 +517,7 @@ export default class CollectionSubcommand implements Subcommand {
         });
 
         // Sends bacteria boar image if edition 1 gotten
-        for (const edition of editions) {
-            if (edition !== 1) continue;
-
+        for (let i=0; i<bacteriaEditions.length; i++) {
             await this.compInter.followUp({
                 files: [
                     await new ItemImageGenerator(

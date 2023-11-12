@@ -613,7 +613,7 @@ export class BoarGift {
             true
         );
 
-        const editions = await this.giftedUser.addBoars(boarIDs, inter, this.config);
+        const bacteriaEditions = await this.giftedUser.addBoars(boarIDs, inter, this.config);
         await this.boarUser.addBoars(boarIDs, inter, this.config);
 
         await inter.editReply({
@@ -625,9 +625,7 @@ export class BoarGift {
             components: []
         }).catch(() => {});
 
-        for (const edition of editions) {
-            if (edition !== 1) continue;
-
+        for (let i=0; i<bacteriaEditions.length; i++) {
             LogDebug.log(
                 `Received bacteria boar from ${this.boarUser.user.username} (${this.boarUser.user.id}) in gift`,
                 this.config,

@@ -397,7 +397,7 @@ export class BoarUser {
                 // Sets edition numbers
                 for (let i=0; i<boarIDs.length; i++) {
                     const boarID = boarIDs[i];
-                    const rarityName = rarityInfos[i][1].name;
+                    const givesSpecial = rarityInfos[i][1].givesSpecial;
 
                     if (!itemsData.boars[boarID]) {
                         LogDebug.log(`First edition of ${boarID}`, config, interaction, true);
@@ -410,7 +410,7 @@ export class BoarUser {
                         itemsData.boars[boarID].lastBuys[1] = lastBuySell;
                         itemsData.boars[boarID].lastSells[1] = lastBuySell;
 
-                        if (rarityName !== 'Special' && rarityName !== 'Wicked') {
+                        if (givesSpecial) {
                             let specialEdition = 0;
                             if (!itemsData.boars['bacteria']) {
                                 itemsData.boars['bacteria'] = new ItemData();
@@ -530,7 +530,7 @@ export class BoarUser {
             throw err;
         });
 
-        return boarEditions;
+        return bacteriaEditions;
     }
 
     /**
@@ -653,8 +653,7 @@ export class BoarUser {
                 return rarity1.weight - rarity2.weight;
             });
 
-        let numSpecial = 0;
-        let numEvent = 0;
+        let numIgnore = 0;
         let numZeroBoars = 0;
         let maxUniques = 0;
 
@@ -662,7 +661,7 @@ export class BoarUser {
         const isSBServer = guildData?.isSBServer;
 
         for (const rarity of orderedRarities) {
-            if (rarity.name !== 'Special' && rarity.name !== 'Wicked') {
+            if (!rarity.hunterNeed) {
                 maxUniques += rarity.boars.length;
             }
         }
@@ -690,13 +689,8 @@ export class BoarUser {
                 delete this.itemCollection.boars[curBoarID];
                 this.itemCollection.boars[curBoarID] = curBoarData;
 
-                if (rarity.name === 'Special') {
-                    numSpecial++;
-                    continue;
-                }
-
-                if (rarity.name === 'Wicked') {
-                    numEvent++;
+                if (!rarity.hunterNeed) {
+                    numIgnore++;
                     continue;
                 }
 
@@ -709,7 +703,7 @@ export class BoarUser {
             }
         }
 
-        if (obtainedBoars.length-numSpecial-numZeroBoars-numEvent >= maxUniques) {
+        if (obtainedBoars.length-numIgnore-numZeroBoars >= maxUniques) {
             await this.addBadge('hunter', interaction, true);
         } else {
             await this.removeBadge('hunter', interaction, true);
