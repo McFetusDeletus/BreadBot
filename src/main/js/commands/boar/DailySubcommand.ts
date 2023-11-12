@@ -180,7 +180,7 @@ export default class DailySubcommand implements Subcommand {
         }
 
         // Adds boars to collection and gathers the editions for each boar
-        const editions = await boarUser.addBoars(boarIDs, this.interaction, this.config, randScores);
+        const bacteriaEditions = await boarUser.addBoars(boarIDs, this.interaction, this.config, randScores);
 
         // Gets item images for each boar
         for (let i=0; i<boarIDs.length; i++) {
@@ -214,8 +214,7 @@ export default class DailySubcommand implements Subcommand {
         }
 
         // Sends bacteria boar images if edition one gotten
-        for (const edition of editions) {
-            if (edition !== 1) continue;
+        for (let i=0; i<bacteriaEditions.length; i++) {
             await this.interaction.followUp({
                 files: [
                     await new ItemImageGenerator(

@@ -530,7 +530,7 @@ export class BoarUser {
             throw err;
         });
 
-        return boarEditions;
+        return bacteriaEditions;
     }
 
     /**
