@@ -24,7 +24,14 @@ Getting the bot up and running is easy! Just follow the instructions below. Anti
 - Install Node.js version [18.18.0 LTS](https://nodejs.org/dist/v18.18.0)
 - This should come with npm, the suggested package manager for this project
 
-### Step 2: Installing necessary modules
+### Step 2: Installing Python
+- Install Python version [3.12.1](https://www.python.org/downloads/) or newer
+- This is necessary for animated image generation
+- Use a package management tool like PIP to install the following modules
+ - Pillow
+ - requests
+
+### Step 3: Installing necessary modules
 - Run the command `npm install --omit=dev` to install all modules you'll need. Below are the modules and their versions that are confirmed to be compatible.
   - discord.js@14.13.0
   - basic-ftp@5.0.3
@@ -39,7 +46,7 @@ Getting the bot up and running is easy! Just follow the instructions below. Anti
   - python-shell@5.0.0
   - typescript@5.2.2
 
-### Step 3: Configurations
+### Step 4: Configurations
 - Rename [example_config.json](example_config.json) to `config.json`
 - Create a file in the root of the project names `.env`. Below is how the file should look. This includes potentially sensitive information. Don't share it!
   - Only `TOKEN`, `CLIENT_ID`, and `GUILD_ID` are required for normal function
@@ -48,7 +55,7 @@ Getting the bot up and running is easy! Just follow the instructions below. Anti
 
 - In `config.json`, configure the `logChannel` field near the top of the file. `reportsChannel` and `updatesChannel` are also recommended but are optional
 
-### Step 4: Running the Bot
+### Step 5: Running the Bot
 - Enter this command in the root of the project: `tsc -p .` to compile the project
 - Run the command `node dist/BoarBotApp.js deploy-commands`
   - For a quicker debugging experience, look into using ts-node

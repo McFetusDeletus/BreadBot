@@ -304,7 +304,17 @@ export class BoarBot implements Bot {
 	 * @private
 	 */
 	private async startSpookCrons() {
-		const spookChannel = await this.client.channels.fetch(this.getConfig().spookChannel) as TextChannel;
+		let spookChannel: TextChannel;
+
+		try {
+			spookChannel = await this.client.channels.fetch(this.getConfig().spookChannel) as TextChannel;
+		} catch {
+			LogDebug.log(
+				'Invalid spook channel ID! Spook messages will not be sent for this bot instance.', this.getConfig()
+			);
+			return;
+		}
+
 		const spookMessages = this.getConfig().stringConfig.spookMessages;
 
 		new CronJob('30 21 31 9 *', async () => {

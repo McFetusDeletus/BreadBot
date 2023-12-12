@@ -120,6 +120,7 @@ export default class GiveSubcommand implements Subcommand {
         const inputID = this.idInput.split(' ')[0];
         const tag = this.idInput.split(' ')[2];
         let attachment: AttachmentBuilder | undefined;
+        let bacteriaAttachment: AttachmentBuilder | undefined;
         let replyString = strConfig.giveBoar;
 
         const idNoExist = !tag || (tag !== strConfig.giveBoarChoiceTag && tag !== strConfig.giveBadgeChoiceTag) ||
@@ -137,10 +138,18 @@ export default class GiveSubcommand implements Subcommand {
         );
 
         if (tag === strConfig.giveBoarChoiceTag) {
-            await boarUser.addBoars([this.idInput.split(' ')[0]], this.interaction, this.config);
+            const bacteriaEditions = await boarUser.addBoars(
+                [this.idInput.split(' ')[0]], this.interaction, this.config
+            );
 
             attachment = await new ItemImageGenerator(boarUser.user, inputID, strConfig.giveTitle, this.config)
                 .handleImageCreate(false, this.interaction.user);
+
+            if (bacteriaEditions) {
+                bacteriaAttachment = await new ItemImageGenerator(
+                    boarUser.user, 'bacteria', strConfig.giveTitle, this.config
+                ).handleImageCreate(false, this.interaction.user);
+            }
         } else if (tag === strConfig.giveBadgeChoiceTag) {
             const hasBadge = await boarUser.addBadge(this.idInput.split(' ')[0], this.interaction);
 
@@ -158,6 +167,10 @@ export default class GiveSubcommand implements Subcommand {
 
         if (attachment) {
             await this.interaction.followUp({ files: [attachment] });
+        }
+
+        if (bacteriaAttachment) {
+            await this.interaction.followUp({ files: [bacteriaAttachment] });
         }
     }
 }

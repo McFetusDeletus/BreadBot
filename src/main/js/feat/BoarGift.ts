@@ -162,7 +162,7 @@ export class BoarGift {
                 `${inter.user.username} (${inter.user.id}) tried to open gift`, this.config, this.firstInter
             );
 
-            const isBanned = await InteractionUtils.handleBanned(inter, this.config, true);
+            const isBanned = await InteractionUtils.handleBanned(inter, this.config);
             if (isBanned) {
                 this.compInters.splice(index, 1);
                 return;
