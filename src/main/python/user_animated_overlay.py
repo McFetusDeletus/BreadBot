@@ -156,7 +156,7 @@ for frame in ImageSequence.Iterator(item_image):
         user_tag_pos, user_tag.encode('utf-16').decode('utf-16'), font_color, font=text_small_medium, anchor='ls'
     )
 
-    if score != '' and gifter_user_tag == '':
+    if score != '' and score != '0' and gifter_user_tag == '':
         new_frame_draw.rounded_rectangle(
             xy=(
                 box_x, bucks_box_y,

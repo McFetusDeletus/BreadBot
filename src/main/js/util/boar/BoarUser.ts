@@ -648,7 +648,7 @@ export class BoarUser {
     ): Promise<void> {
         const obtainedBoars = Object.keys(this.itemCollection.boars);
 
-        const orderedRarities = [...config.rarityConfigs.slice(0,config.rarityConfigs.length-1)]
+        const orderedRarities = [...config.rarityConfigs.slice(0,config.rarityConfigs.length)]
             .sort((rarity1: RarityConfig, rarity2: RarityConfig) => {
                 return rarity1.weight - rarity2.weight;
             });
@@ -661,7 +661,7 @@ export class BoarUser {
         const isSBServer = guildData?.isSBServer;
 
         for (const rarity of orderedRarities) {
-            if (!rarity.hunterNeed) {
+            if (rarity.hunterNeed) {
                 maxUniques += rarity.boars.length;
             }
         }
@@ -689,6 +689,9 @@ export class BoarUser {
                 delete this.itemCollection.boars[curBoarID];
                 this.itemCollection.boars[curBoarID] = curBoarData;
 
+                orderedBoars.push(curBoarID);
+                j--;
+
                 if (!rarity.hunterNeed) {
                     numIgnore++;
                     continue;
@@ -697,9 +700,6 @@ export class BoarUser {
                 if (this.itemCollection.boars[curBoarID].num == 0) {
                     numZeroBoars++;
                 }
-
-                orderedBoars.push(curBoarID);
-                j--;
             }
         }
 

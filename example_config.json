@@ -5,6 +5,8 @@
   "logChannel": "1234567890",
   "reportsChannel": "1234567890",
   "updatesChannel": "1234567890",
+  "defaultChannel": "1234567890",
+  "spookChannel": "1234567890",
   "unlimitedBoars": false,
   "debugMode": true,
   "maintenanceMode": false,
@@ -1838,7 +1840,7 @@
                   {
                     "type": 4,
                     "customId": "REPORT_DETAIL_INPUT",
-                    "label": "Prove some details",
+                    "label": "Provide some details",
                     "style": 2,
                     "required": true
                   }

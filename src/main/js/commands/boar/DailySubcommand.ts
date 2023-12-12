@@ -109,8 +109,8 @@ export default class DailySubcommand implements Subcommand {
                         return sum + val;
                     });
 
-                    // Increases chance of truth boars until it's guaranteed at 10m blessings
-                    // .01% at 1k | .1% at 10k | 1% at 100k | 10% at 1m | 100% at 10m
+                    // Increases chance of truth boars for each blessing
+                    // ~.01% at 1k | ~.1% at 10k | ~1% at 100k | ~10% at 1m | ~50% at 10m
                     rarityWeights.set(9, totalWeight / (10000000 / userMultiplier));
                 }
 
