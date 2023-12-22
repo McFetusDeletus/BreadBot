@@ -347,7 +347,13 @@ export default class SetupSubcommand implements Subcommand {
                     color = this.config.colorConfig.error;
                     break;
                 case CollectorUtils.Reasons.Finished:
-                    LogDebug.log(`${this.firstInter.guild?.id} had BoarBot set up`, this.config, undefined, true);
+                    LogDebug.log(
+                        `${this.firstInter.guild?.id} had BoarBot set up by ` +
+                            `${this.firstInter.user.username} (${this.firstInter.user.id})`,
+                        this.config,
+                        undefined,
+                        true
+                    );
 
                     this.guildData = {
                         fullySetup: true,

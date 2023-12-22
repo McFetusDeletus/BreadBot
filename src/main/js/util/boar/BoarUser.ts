@@ -303,7 +303,9 @@ export class BoarUser {
         let uniques = 0;
 
         for (const boarID of Object.keys(this.itemCollection.boars)) {
-            if (this.itemCollection.boars[boarID].num > 0) {
+            const hasBoar = this.itemCollection.boars[boarID].num > 0;
+            const isSpecial = config.rarityConfigs[config.rarityConfigs.length-1].boars.includes(boarID);
+            if (hasBoar && !isSpecial) {
                 uniques++;
             }
         }
@@ -443,7 +445,9 @@ export class BoarUser {
                     const collectBucksIndex = questData.curQuestIDs.indexOf('collectBucks');
                     const boarID = boarIDs[i];
 
-                    LogDebug.log(`Adding ${boarID} to collection`, config, interaction, true);
+                    LogDebug.log(
+                        `Adding ${boarID} to collection, Edition: ${boarEditions[i]}`, config, interaction, true
+                    );
 
                     this.stats.quests.progress[collectBucksIndex] += scores[i]
                         ? scores[i]
@@ -491,7 +495,7 @@ export class BoarUser {
             await Queue.addQueue(async () => {
                 this.refreshUserData();
 
-                LogDebug.log(`Adding bacteria to collection`, config, interaction, true);
+                LogDebug.log(`Adding bacteria to collection, Edition(s): ${bacteriaEditions}`, config, interaction, true);
 
                 if (!this.itemCollection.boars['bacteria']) {
                     this.itemCollection.boars['bacteria'] = new CollectedBoar();
@@ -561,7 +565,12 @@ export class BoarUser {
         }
 
         if (!hasBadge) {
-            LogDebug.log(`Added ${badgeID} badge to collection`, BoarBotApp.getBot().getConfig(), interaction, true);
+            LogDebug.log(
+                `Added ${badgeID} badge to ${this.user.username}'s (${this.user.id}) collection`,
+                BoarBotApp.getBot().getConfig(),
+                interaction,
+                true
+            );
         }
 
         return hasBadge;
@@ -618,7 +627,12 @@ export class BoarUser {
             });
         }
 
-        LogDebug.log(`Removed ${badgeID} badge from collection`, BoarBotApp.getBot().getConfig(), interaction, true);
+        LogDebug.log(
+            `Removed ${badgeID} badge from ${this.user.username}'s (${this.user.id}) collection`,
+            BoarBotApp.getBot().getConfig(),
+            interaction,
+            true
+        );
 
         this.updateUserData();
     }
@@ -654,7 +668,6 @@ export class BoarUser {
             });
 
         let numIgnore = 0;
-        let numZeroBoars = 0;
         let maxUniques = 0;
 
         const guildData = await DataHandlers.getGuildData(interaction.guild?.id);
@@ -682,6 +695,7 @@ export class BoarUser {
             for (let j=0; j<obtainedBoars.length; j++) {
                 const curBoarID = obtainedBoars[j]; // ID of current boar
                 const curBoarData = this.itemCollection.boars[curBoarID]; // Data of current boar
+                const curBoarInfo = config.itemConfigs.boars[curBoarID]; // Config info of current boar
 
                 if (!boarsOfRarity.includes(curBoarID) || orderedBoars.includes(curBoarID)) continue;
 
@@ -692,18 +706,13 @@ export class BoarUser {
                 orderedBoars.push(curBoarID);
                 j--;
 
-                if (!rarity.hunterNeed) {
+                if (!rarity.hunterNeed || curBoarData.num == 0 || !isSBServer && curBoarInfo.isSB) {
                     numIgnore++;
-                    continue;
-                }
-
-                if (this.itemCollection.boars[curBoarID].num == 0) {
-                    numZeroBoars++;
                 }
             }
         }
 
-        if (obtainedBoars.length-numIgnore-numZeroBoars >= maxUniques) {
+        if (obtainedBoars.length-numIgnore >= maxUniques) {
             await this.addBadge('hunter', interaction, true);
         } else {
             await this.removeBadge('hunter', interaction, true);

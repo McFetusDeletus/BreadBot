@@ -145,7 +145,7 @@ export default class GiveSubcommand implements Subcommand {
             attachment = await new ItemImageGenerator(boarUser.user, inputID, strConfig.giveTitle, this.config)
                 .handleImageCreate(false, this.interaction.user);
 
-            if (bacteriaEditions) {
+            if (bacteriaEditions.length > 0) {
                 bacteriaAttachment = await new ItemImageGenerator(
                     boarUser.user, 'bacteria', strConfig.giveTitle, this.config
                 ).handleImageCreate(false, this.interaction.user);

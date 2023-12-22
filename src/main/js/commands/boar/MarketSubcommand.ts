@@ -202,11 +202,48 @@ export default class MarketSubcommand implements Subcommand {
 
             this.compInter = inter;
 
-            LogDebug.log(
-                `${inter.customId.split('|')[0]} on page ${this.curPage} in view ${this.curView}`,
-                this.config,
-                this.firstInter
-            );
+            switch (this.curView) {
+                case View.Overview: {
+                    LogDebug.log(
+                        `${inter.customId.split('|')[0]} on page ${this.curPage} in view ${this.curView}`,
+                        this.config,
+                        this.firstInter
+                    );
+                    break;
+                }
+
+                case View.BuySell: {
+                    LogDebug.log(
+                        `${inter.customId.split('|')[0]} on page ${this.curPage} ` +
+                            `(${this.pricingData[this.curPage].id}) in view ${this.curView}`,
+                        this.config,
+                        this.firstInter
+                    );
+                    break;
+                }
+
+                case View.UserOrders: {
+                    if (this.curPage < this.userBuyOrders.length) {
+                        LogDebug.log(
+                            `${inter.customId.split('|')[0]} on page ${this.curPage} ` +
+                                `(${this.userBuyOrders[this.curPage].id}, BUY) in view ${this.curView}`,
+                            this.config,
+                            this.firstInter
+                        );
+                    } else {
+                        LogDebug.log(
+                            `${inter.customId.split('|')[0]} on page ${this.curPage} ` +
+                                `(${this.userSellOrders[this.curPage - this.userBuyOrders.length].id}, SELL) ` +
+                                `in view ${this.curView}`,
+                            this.config,
+                            this.firstInter
+                        );
+                    }
+
+                    break;
+                }
+            }
+
 
             const marketRowConfig = this.config.commandConfigs.boar.market.componentFields;
             const marketComponents = {
@@ -510,6 +547,14 @@ export default class MarketSubcommand implements Subcommand {
                 this.compInter, strConfig.marketClaimComplete, colorConfig.green, undefined, undefined, true
             );
 
+            LogDebug.log(
+                `!! ${isSell ? 'SELL' : 'BUY'} ORDER CLAIMED!! - ${orderInfo.id} ` +
+                    `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, $${orderInfo.data.price})`,
+                this.config,
+                this.firstInter,
+                true
+            );
+
             // Goes to first page if the order has been fully filled and claimed
             this.curPage = orderInfo.data.num === orderInfo.data.claimedAmount + numToClaim
                 ? 0
@@ -585,6 +630,14 @@ export default class MarketSubcommand implements Subcommand {
                                 true
                             );
 
+                            LogDebug.log(
+                                `!!BUY ORDER CANCELLED!! - ${orderInfo.id} ` +
+                                    `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, $${orderInfo.data.price})`,
+                                this.config,
+                                this.firstInter,
+                                true
+                            );
+
                             itemsData[orderInfo.type][orderInfo.id].buyers.splice(i, 1);
 
                             // Handles setting best buy prices after the cancel if the order was the best
@@ -645,6 +698,14 @@ export default class MarketSubcommand implements Subcommand {
                                 colorConfig.green,
                                 undefined,
                                 undefined,
+                                true
+                            );
+
+                            LogDebug.log(
+                                `!!SELL ORDER CANCELLED!! - ${orderInfo.id} ` +
+                                    `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, $${orderInfo.data.price})`,
+                                this.config,
+                                this.firstInter,
                                 true
                             );
 
@@ -1159,7 +1220,8 @@ export default class MarketSubcommand implements Subcommand {
 
                     if (!failedBuy) {
                         LogDebug.log(
-                            `Bought ${this.modalData[0]} of ${itemData.id} for ${prices.trim()} from ${userIDs.trim()}`,
+                            `!!INSTANT BUY!! ${this.modalData[0]} of ${itemData.id} for ${prices.trim()} from `+
+                                `${userIDs.trim()}`,
                             this.config,
                             inter,
                             true
@@ -1407,7 +1469,8 @@ export default class MarketSubcommand implements Subcommand {
 
                     if (!failedSale) {
                         LogDebug.log(
-                            `Sold ${this.modalData[0]} of ${itemData.id} for ${prices} to ${userIDs}`,
+                            `!!INSTANT SELL!! ${this.modalData[0]} of ${itemData.id} for ${prices.trim()} from `+
+                                `${userIDs.trim()}`,
                             this.config,
                             inter,
                             true
@@ -1593,6 +1656,13 @@ export default class MarketSubcommand implements Subcommand {
                     await Replies.handleReply(
                         inter, strConfig.marketOrderComplete, colorConfig.green, undefined, undefined, true
                     );
+
+                    LogDebug.log(
+                        `!!BUY ORDER CREATED!! - ${itemData.id}, ${this.modalData[0]} for $${this.modalData[1]} per`,
+                        this.config,
+                        this.firstInter,
+                        true
+                    );
                 } else {
                     // Tells user they don't have enough bucks to set up buy order
                     await Replies.handleReply(
@@ -1709,6 +1779,13 @@ export default class MarketSubcommand implements Subcommand {
                     // Tells user they successfully set up sell order
                     await Replies.handleReply(
                         inter, strConfig.marketOrderComplete, colorConfig.green, undefined, undefined, true
+                    );
+
+                    LogDebug.log(
+                        `!!SELL ORDER CREATED!! - ${itemData.id}, ${this.modalData[0]} for $${this.modalData[1]} per`,
+                        this.config,
+                        this.firstInter,
+                        true
                     );
                 } else if (this.modalData[2] > 0) {
                     // Tells user they don't have the edition they're trying to sell
@@ -1854,6 +1931,15 @@ export default class MarketSubcommand implements Subcommand {
                                         undefined,
                                         true
                                     );
+
+                                    LogDebug.log(
+                                        `!!BUY ORDER UPDATED!! - ${orderInfo.id} ` +
+                                            `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, ` +
+                                            `$${orderInfo.data.price} -> ${this.modalData[1]})`,
+                                        this.config,
+                                        this.firstInter,
+                                        true
+                                    );
                                 }
                             } else {
                                 foundOrder = true;
@@ -1928,6 +2014,15 @@ export default class MarketSubcommand implements Subcommand {
                                 // Tells user they successfully updated their sell order
                                 await Replies.handleReply(
                                     inter, strConfig.marketUpdateComplete, colorConfig.green, undefined, undefined, true
+                                );
+
+                                LogDebug.log(
+                                    `!!SELL ORDER UPDATED!! - ${orderInfo.id} ` +
+                                        `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, ` +
+                                        `$${orderInfo.data.price} -> ${this.modalData[1]})`,
+                                    this.config,
+                                    this.firstInter,
+                                    true
                                 );
                             } else {
                                 foundOrder = true;

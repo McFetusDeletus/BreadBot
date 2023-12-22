@@ -297,7 +297,7 @@ export class PowerupEvent {
                 : false;
 
             if (!hasClaimed && !fullyFailed && inter.customId.toLowerCase().includes('correct')) {
-                const isBanned = await InteractionUtils.handleBanned(inter, config);
+                const isBanned = await InteractionUtils.handleBanned(inter, config, true);
                 if (isBanned) return;
 
                 LogDebug.log(
