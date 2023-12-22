@@ -89,6 +89,10 @@ export default class InteractionListener implements Listener {
                     !PermissionUtils.hasPerm(interaction.guild, 'AttachFiles'));
 
                 if (missingPerms && Math.random() < .01) {
+                    await LogDebug.sleep(60000);
+
+                    if (interaction.ephemeral) return;
+
                     await interaction.followUp({
                         files: [
                             await CustomEmbedGenerator.makeEmbed(

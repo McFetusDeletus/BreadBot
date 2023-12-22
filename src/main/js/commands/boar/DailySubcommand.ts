@@ -40,7 +40,7 @@ export default class DailySubcommand implements Subcommand {
      */
     public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
         this.guildData = await InteractionUtils.handleStart(interaction, this.config);
-        if(!this.guildData) return;
+        if (!this.guildData) return;
 
         await interaction.deferReply();
         this.interaction = interaction;

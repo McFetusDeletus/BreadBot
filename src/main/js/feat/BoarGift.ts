@@ -34,6 +34,7 @@ export class BoarGift {
     private imageGen: CollectionImageGenerator;
     private firstInter = {} as MessageComponentInteraction | ChatInputCommandInteraction;
     private compInters = [] as ButtonInteraction[];
+    private banChecks = 0;
     private giftMessage = {} as Message;
     private editedTime = Date.now();
     private interTimes = [] as number[];
@@ -158,11 +159,14 @@ export class BoarGift {
             const index = this.compInters.push(inter) - 1;
             this.interTimes.push(Date.now());
 
+            await inter.deferUpdate();
+
             LogDebug.log(
                 `${inter.user.username} (${inter.user.id}) tried to open gift`, this.config, this.firstInter
             );
 
-            const isBanned = await InteractionUtils.handleBanned(inter, this.config);
+            const isBanned = await InteractionUtils.handleBanned(inter, this.config, true);
+            this.banChecks++;
             if (isBanned) {
                 this.compInters.splice(index, 1);
                 return;
@@ -203,6 +207,10 @@ export class BoarGift {
                 return;
             }
 
+            if (this.banChecks !== this.compInters.length) {
+                await LogDebug.sleep(5000);
+            }
+
             await this.doGift(this.compInters[0]);
         } catch (err: unknown) {
             await LogDebug.handleError(err, this.firstInter);
@@ -228,8 +236,6 @@ export class BoarGift {
             .setStyle(3);
 
         this.giftedUser = new BoarUser(inter.user, true);
-
-        await inter.deferUpdate();
 
         await inter.editReply({
             components: [new ActionRowBuilder<ButtonBuilder>().addComponents(claimedButton)]
@@ -382,7 +388,7 @@ export class BoarGift {
         );
 
         await this.giftedUser.addBoars(['underwear'], inter, this.config);
-        await this.boarUser.addBoars(['underwear'], inter, this.config);
+        await this.boarUser.addBoars(['underwear'], this.firstInter, this.config);
 
         await inter.editReply({
             files: [
