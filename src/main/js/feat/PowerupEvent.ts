@@ -473,7 +473,17 @@ export class PowerupEvent {
         const powerups = config.itemConfigs.powerups;
         const powerupIDs = Object.keys(powerups);
 
-        let powerupID = powerupIDs[Math.floor(Math.random() * powerupIDs.length)];
+        let powerupID: string;
+        const curDate = new Date();
+        const isFestiveWeek = curDate.getMonth() === 11 && curDate.getDate() >= 24;
+
+        // If it's festive week, ~86.66% of Powerup Events will give gifts
+        if (isFestiveWeek && Math.random() < .8) {
+            powerupID = 'gift';
+            return powerupID
+        }
+
+        powerupID = powerupIDs[Math.floor(Math.random() * powerupIDs.length)];
         while (powerupID === 'enhancer') {
             powerupID = powerupIDs[Math.floor(Math.random() * powerupIDs.length)];
         }

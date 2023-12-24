@@ -348,7 +348,7 @@ export default class SetupSubcommand implements Subcommand {
                     break;
                 case CollectorUtils.Reasons.Finished:
                     LogDebug.log(
-                        `${this.firstInter.guild?.id} had BoarBot set up by ` +
+                        `${this.firstInter.guild?.name} (${this.firstInter.guild?.id}) had BoarBot set up by ` +
                             `${this.firstInter.user.username} (${this.firstInter.user.id})`,
                         this.config,
                         undefined,

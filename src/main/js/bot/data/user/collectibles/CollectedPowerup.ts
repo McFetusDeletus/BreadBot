@@ -13,6 +13,7 @@ export class CollectedPowerup {
     public numActive?: number; // For miracle charms
     public numOpened?: number; // For gifts
     public curOut?: number; // For gifts
+    public lastOpened?: number; // For gifts
     public numSuccess?: number; // For clones
     public raritiesUsed?: number[]; // For clones and transmutations
 }

@@ -46,6 +46,7 @@ export class NumberConfig {
 
     public readonly collectorIdle = 0 as number;
     public readonly orderExpire = 0 as number;
+    public readonly openDelay = 0 as number; // Cooldown for opening gifts
     public readonly oneDay = 0 as number;
     public readonly notificationButtonDelay = 0 as number;
 

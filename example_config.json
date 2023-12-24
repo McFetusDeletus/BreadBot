@@ -190,8 +190,8 @@
     "eventsDisabled": "This server is missing out on powerups! To allow them to spawn, make sure BoarBot has the permissions it requests when you click \"Add To Server\" under its profile!",
     "powRightFull": "%@ It took you %@ to guess correctly! You'll receive %@ once the powerup event ends!",
     "powRight": "Correct!",
-    "powWrongFirst": "%@ You have one more guess!",
-    "powWrongSecond": "%@ You have no more guesses!",
+    "powWrongFirst": "%@ Try again!",
+    "powWrongSecond": "%@ You guessed incorrectly twice! Event Failed!",
     "powWrong": "Incorrect!",
     "powNoMore": "You've guessed incorrectly too many times! Better luck next time!",
     "powTop": "Perfect Powerup! - #1 Claimer",
@@ -277,7 +277,8 @@
       "You have a boar streak of %@! The higher your boar streak, the more boar blessings you'll have!",
       "Want to suggest a new boar or feature? Join the server in my About Me!",
       "BoarBot has a lot more to it than just running /boar daily! To see everything BoarBot has to offer, use /boar help!",
-      "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join our Discord server: https://discord.gg/DXSwKHYrCa"
+      "Boar-o-ween happens every year on Halloween and consists of a series of intricate hunts and unique rewards. Interested in playing? Join our Discord server: https://discord.gg/DXSwKHYrCa",
+      "Boarmas is now active for the Holidays! Boar Gifts are more frequent from Powerup Events, there's new boars to obtain, and Boar Gifts have improved odds for getting rarer boars!"
     ],
     "notificationServerPing": "<@&1001233916620972082> \n*Note: If you run /boar daily a second time, then click \"Enable Notifications\", you can receive your notifications in DMs instead. To disable this ping, un-react to the boar emoji in <#996887892737667204>*",
     "questCompletionBonus": "Full Completion Bonus:",
@@ -326,7 +327,7 @@
     "maxStreak": 99999999,
     "maxDailies": 99999999,
     "maxIndivBoars": 100000000000000000,
-    "maxPowBase": 99999999999999999,
+    "maxPowBase": 100000000000000000,
     "maxEnhancers": 30,
     "maxSmallPow": 999999999,
     "maxPowPages": 3,
@@ -1041,6 +1042,7 @@
     "marketOrdClaimWidth": 620,
     "marketRange": 2,
     "orderExpire": 604800000,
+    "openDelay": 120000,
     "notificationButtonDelay": 15000,
     "questFullAmt": 3,
     "questImgSize": [
@@ -2370,19 +2372,19 @@
       "valType": "rarity",
       "questVals": [
         [
-          2,
+          3,
           2
         ],
         [
-          3,
+          4,
           3
         ],
         [
-          4,
+          5,
           1
         ],
         [
-          5,
+          6,
           1
         ]
       ]
@@ -2470,19 +2472,19 @@
       "valType": "rarity",
       "questVals": [
         [
-          2,
+          3,
           3
         ],
         [
-          3,
+          4,
           5
         ],
         [
-          4,
+          5,
           1
         ],
         [
-          5,
+          6,
           1
         ]
       ]
@@ -2538,8 +2540,8 @@
       ]
     },
     "powParticipate": {
-      "description": "Participate in %@ Powerup Event",
-      "descriptionAlt": "Participate in %@ Powerup Events",
+      "description": "Succeed in %@ Powerup Event",
+      "descriptionAlt": "Succeed in %@ Powerup Events",
       "lowerReward": "bucks",
       "higherReward": "enhancer",
       "valType": "number",
@@ -2622,6 +2624,13 @@
         "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way.",
         "isSB": false
       },
+      "ice": {
+        "name": "Icy Boar",
+        "pluralName": "Icy Boars",
+        "file": "IceBoar.png",
+        "description": "Touching this boar will instantly give you frostbite. Wherever it goes, blizzard-like conditions follow. Found in the heart of glaciers.",
+        "isSB": false
+      },
       "normal": {
         "name": "Normal Boar",
         "pluralName": "Normal Boars",
@@ -2693,6 +2702,13 @@
         "file": "Boarnderwear.png",
         "description": "Children all around the world are disappointed when they open a gift excitedly just to get this boar. It appears as though it's been worn.",
         "isSB": false
+      },
+      "santa": {
+        "name": "Santa Boar",
+        "pluralName": "Santa Boars",
+        "file": "SantaBoar.png",
+        "description": "Every Boarmas, this boar delivers gifts to both young and old! Questioning its identity is highly discouraged.",
+        "isSB": false
       }
     },
     "badges": {
@@ -2729,9 +2745,18 @@
         "rewardAmt": 1,
         "outcomes": [
           {
-            "weight": 1,
+            "weight": 10,
             "category": "Special Boar",
-            "suboutcomes": []
+            "suboutcomes": [
+              {
+                "weight": 9,
+                "name": "santa"
+              },
+              {
+                "weight": 1,
+                "name": "underwear"
+              }
+            ]
           },
           {
             "weight": 800,
@@ -2752,7 +2777,7 @@
             ]
           },
           {
-            "weight": 399,
+            "weight": 392,
             "category": "Powerups",
             "suboutcomes": [
               {
@@ -2798,7 +2823,7 @@
     {
       "name": "Wicked",
       "pluralName": "Wickeds",
-      "weight": 826,
+      "weight": 827,
       "baseScore": 20,
       "fromDaily": false,
       "hunterNeed": false,
@@ -2807,6 +2832,20 @@
       "avgClones": 100,
       "boars": [
         "zombie"
+      ]
+    },
+    {
+      "name": "Festive",
+      "pluralName": "Festives",
+      "weight": 826,
+      "baseScore": 20,
+      "fromDaily": false,
+      "hunterNeed": false,
+      "givesSpecial": false,
+      "enhancersNeeded": 0,
+      "avgClones": 100,
+      "boars": [
+        "ice"
       ]
     },
     {
@@ -2923,6 +2962,7 @@
     },
     {
       "name": "Special",
+      "pluralName": "Specials",
       "weight": 0,
       "baseScore": 0,
       "fromDaily": false,
@@ -2950,14 +2990,15 @@
     "maintenance": "#FFFF00",
     "error": "#FF5555",
     "rarity1": "#474747,#679311,#474747",
-    "rarity2": "#FFFFFF",
-    "rarity3": "#00FF0F",
-    "rarity4": "#0064FF",
-    "rarity5": "#6400FF",
-    "rarity6": "#FFC500",
-    "rarity7": "#F300FF",
-    "rarity8": "#00FFFB",
-    "rarity9": "#ff6666,#ffb566,#fffa66,#74ff66,#666bff,#b966ff",
-    "rarity10": "#BC2326,#FF3136,#BC2326"
+    "rarity2": "#ff0000,#ffffff,#155412",
+    "rarity3": "#FFFFFF",
+    "rarity4": "#00FF0F",
+    "rarity5": "#0064FF",
+    "rarity6": "#6400FF",
+    "rarity7": "#FFC500",
+    "rarity8": "#F300FF",
+    "rarity9": "#00FFFB",
+    "rarity10": "#ff6666,#ffb566,#fffa66,#74ff66,#666bff,#b966ff",
+    "rarity11": "#BC2326,#FF3136,#BC2326"
   }
 }

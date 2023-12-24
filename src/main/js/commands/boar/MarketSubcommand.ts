@@ -548,8 +548,8 @@ export default class MarketSubcommand implements Subcommand {
             );
 
             LogDebug.log(
-                `!! ${isSell ? 'SELL' : 'BUY'} ORDER CLAIMED!! - ${orderInfo.id} ` +
-                    `(${orderInfo.data.claimedAmount}/${orderInfo.data.num}, $${orderInfo.data.price})`,
+                `!!${isSell ? 'SELL' : 'BUY'} ORDER CLAIMED!! - ${orderInfo.id} ` +
+                    `(${orderInfo.data.claimedAmount + numToClaim}/${orderInfo.data.num}, $${orderInfo.data.price})`,
                 this.config,
                 this.firstInter,
                 true
@@ -845,7 +845,7 @@ export default class MarketSubcommand implements Subcommand {
             this.boarUser.itemCollection.boars[orderInfo.id].num += numToReturn;
 
             const canCollectBoarQuest = collectBoarIndex >= 0 && isClaim &&
-                Math.floor(collectBoarIndex / 2) + 2 === BoarUtils.findRarity(orderInfo.id, this.config)[0];
+                Math.floor(collectBoarIndex / 2) + 3 === BoarUtils.findRarity(orderInfo.id, this.config)[0];
 
             // Counts progress toward collecting boar rarity quest if claiming a boar buy order
             if (canCollectBoarQuest) {
@@ -1026,9 +1026,11 @@ export default class MarketSubcommand implements Subcommand {
 
                                     const filledAmt = newItemData.sellers[curIndex].filledAmount;
                                     const ordAmt = newItemData.sellers[curIndex].num;
+                                    const isExpired = newItemData.sellers[curIndex].listTime +
+                                        this.config.numberConfig.orderExpire < Date.now();
 
                                     // Gets price of order and ID of user that made order for logging
-                                    if (filledAmt !== ordAmt) {
+                                    if (filledAmt !== ordAmt && !isExpired) {
                                         prices += '$' + newItemData.sellers[curIndex].price + ' ';
                                         userIDs += newItemData.sellers[curIndex].userID + ' ';
                                     }
@@ -1208,7 +1210,7 @@ export default class MarketSubcommand implements Subcommand {
                         }
 
                         const canCollectBoarQuest = collectBoarIndex >= 0 && !isOwnOrder &&
-                            Math.floor(collectBoarIndex / 2) + 2 === BoarUtils.findRarity(itemData.id, this.config)[0];
+                            Math.floor(collectBoarIndex / 2) + 3 === BoarUtils.findRarity(itemData.id, this.config)[0];
 
                         // Counts progress toward collect boar quest
                         if (canCollectBoarQuest) {
@@ -1288,12 +1290,8 @@ export default class MarketSubcommand implements Subcommand {
 
                                 // Attempts to grab price of all items combined across orders
                                 while (numGrabbed < this.modalData[0]) {
-                                    if (curIndex >= newItemData.buyers.length) break;
-
-                                    let numToAdd = 0;
-
                                     // Adds amount left in current order or amount left to satisfy insta sell
-                                    numToAdd = Math.min(
+                                    const numToAdd = Math.min(
                                         this.modalData[0] - numGrabbed,
                                         newItemData.buyers[curIndex].listTime + nums.orderExpire < Date.now()
                                             ? 0
@@ -1306,9 +1304,11 @@ export default class MarketSubcommand implements Subcommand {
 
                                     const filledAmt = newItemData.buyers[curIndex].filledAmount;
                                     const numAmt = newItemData.buyers[curIndex].num;
+                                    const isExpired = newItemData.buyers[curIndex].listTime +
+                                        this.config.numberConfig.orderExpire < Date.now();
 
                                     // Gets price of order and ID of user that made order for logging
-                                    if (filledAmt !== numAmt) {
+                                    if (filledAmt !== numAmt && !isExpired) {
                                         prices += '$' + newItemData.buyers[curIndex].price + ' ';
                                         userIDs += newItemData.buyers[curIndex].userID + ' ';
                                     }
@@ -1469,7 +1469,7 @@ export default class MarketSubcommand implements Subcommand {
 
                     if (!failedSale) {
                         LogDebug.log(
-                            `!!INSTANT SELL!! ${this.modalData[0]} of ${itemData.id} for ${prices.trim()} from `+
+                            `!!INSTANT SELL!! ${this.modalData[0]} of ${itemData.id} for ${prices.trim()} to `+
                                 `${userIDs.trim()}`,
                             this.config,
                             inter,

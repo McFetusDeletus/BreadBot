@@ -34,7 +34,7 @@ export class BoarGift {
     private imageGen: CollectionImageGenerator;
     private firstInter = {} as MessageComponentInteraction | ChatInputCommandInteraction;
     private compInters = [] as ButtonInteraction[];
-    private banChecks = 0;
+    private openersChecked = 0;
     private giftMessage = {} as Message;
     private editedTime = Date.now();
     private interTimes = [] as number[];
@@ -166,10 +166,30 @@ export class BoarGift {
             );
 
             const isBanned = await InteractionUtils.handleBanned(inter, this.config, true);
-            this.banChecks++;
-            if (isBanned) {
+
+            const boarUser = new BoarUser(inter.user, true);
+            const lastOpenedTime = boarUser.itemCollection.powerups.gift.lastOpened;
+            const openedRecently = lastOpenedTime
+                ? lastOpenedTime + this.config.numberConfig.openDelay > Date.now()
+                : false;
+
+            if (isBanned || openedRecently) {
                 this.compInters.splice(index, 1);
                 return;
+            }
+
+            this.openersChecked++;
+
+            if (!this.collector.ended) {
+                const claimedButton = new ButtonBuilder()
+                    .setDisabled(true)
+                    .setCustomId('GIFT_CLAIMED')
+                    .setLabel('Claiming...')
+                    .setStyle(3);
+
+                await inter.editReply({
+                    components: [new ActionRowBuilder<ButtonBuilder>().addComponents(claimedButton)]
+                }).catch(() => {});
             }
 
             this.collector.stop();
@@ -207,11 +227,12 @@ export class BoarGift {
                 return;
             }
 
-            if (this.banChecks !== this.compInters.length) {
-                await LogDebug.sleep(5000);
-            }
+            const openCheckInterval = setInterval(async () => {
+                if (this.openersChecked !== this.compInters.length) return;
 
-            await this.doGift(this.compInters[0]);
+                clearInterval(openCheckInterval);
+                await this.doGift(this.compInters[0]);
+            }, 300);
         } catch (err: unknown) {
             await LogDebug.handleError(err, this.firstInter);
         }
@@ -227,19 +248,24 @@ export class BoarGift {
         const strConfig = this.config.stringConfig;
         const colorConfig = this.config.colorConfig;
 
-        const outcome = this.getOutcome();
-        const subOutcome = this.getOutcome(outcome);
-        const claimedButton = new ButtonBuilder()
-            .setDisabled(true)
-            .setCustomId('GIFT_CLAIMED')
-            .setLabel('Claiming...')
-            .setStyle(3);
+        let outcome = this.getOutcome();
+        let subOutcome = this.getOutcome(outcome);
+
+        const curDate = new Date();
+        const isFestiveWeek = curDate.getMonth() === 11 && curDate.getDate() >= 24;
+
+        // Gives powerup if santa boar gotten outside festive week
+        if (outcome === 0 && subOutcome === 1 && !isFestiveWeek) {
+            outcome = 2;
+            subOutcome = this.getOutcome(outcome);
+        }
+
+        // Re-rolls if santa gotten instead of underwear, increasing underwear odds 2x
+        if (outcome === 0 && subOutcome === 0 && isFestiveWeek) {
+            subOutcome = this.getOutcome(outcome);
+        }
 
         this.giftedUser = new BoarUser(inter.user, true);
-
-        await inter.editReply({
-            components: [new ActionRowBuilder<ButtonBuilder>().addComponents(claimedButton)]
-        }).catch(() => {});
 
         let canGift = true;
         await Queue.addQueue(async () => {
@@ -281,7 +307,7 @@ export class BoarGift {
 
         switch (outcome) {
             case 0: {
-                await this.giveSpecial(inter);
+                await this.giveSpecial(subOutcome, inter);
                 break;
             }
 
@@ -306,6 +332,7 @@ export class BoarGift {
                 this.giftedUser.refreshUserData();
 
                 (this.giftedUser.itemCollection.powerups.gift.numOpened as number)++;
+                (this.giftedUser.itemCollection.powerups.gift.lastOpened as number) = Date.now();
                 if (this.giftedUser.stats.general.firstDaily === 0) {
                     this.giftedUser.stats.general.firstDaily = Date.now();
                 }
@@ -344,21 +371,23 @@ export class BoarGift {
         let outcomes = outcomeConfig as OutcomeConfig[] | OutcomeSubConfig[];
         let weightTotal = 0;
 
+        // Get suboutcomes if outcome parameter present
         if (outcomeVal !== undefined) {
             outcomes = outcomeConfig[outcomeVal].suboutcomes;
         }
 
-        if (outcomes.length === 0) return -1;
-
+        // Get total weight of outcomes
         for (const outcome of outcomes) {
             weightTotal += outcome.weight;
         }
 
+        // Get probability points for each outcome
         for (let i=0; i<outcomes.length; i++) {
             const weight = outcomes[i].weight;
 
             probabilities.push(weight / weightTotal);
 
+            // Doesn't add previous probability value if it's the first probability value
             if (probabilities.length === 1) continue;
 
             probabilities[i] += probabilities[i-1];
@@ -376,10 +405,14 @@ export class BoarGift {
     /**
      * Handles the special boar category
      *
+     * @param suboutcome - What special boar was given
      * @param inter - The interaction to respond to
      * @private
      */
-    private async giveSpecial(inter: ButtonInteraction): Promise<void> {
+    private async giveSpecial(suboutcome: number, inter: ButtonInteraction): Promise<void> {
+        const outcomeConfig = (this.config.itemConfigs.powerups.gift.outcomes as OutcomeConfig[])[0];
+        const outcomeName = outcomeConfig.suboutcomes[suboutcome].name;
+
         LogDebug.log(
             `Received special boar from ${this.boarUser.user.username} (${this.boarUser.user.id}) in gift`,
             this.config,
@@ -387,13 +420,18 @@ export class BoarGift {
             true
         );
 
-        await this.giftedUser.addBoars(['underwear'], inter, this.config);
-        await this.boarUser.addBoars(['underwear'], this.firstInter, this.config);
+        if (suboutcome === 0) {
+            await this.boarUser.addBoars([outcomeName], this.firstInter, this.config);
+            await this.giftedUser.addBoars([outcomeName], inter, this.config);
+        } else {
+            await this.giftedUser.addBoars([outcomeName], inter, this.config);
+            await this.boarUser.addBoars([outcomeName], this.firstInter, this.config);
+        }
 
         await inter.editReply({
             files: [
                 await new ItemImageGenerator(
-                    this.giftedUser.user, 'underwear', this.config.stringConfig.giftOpenTitle, this.config
+                    this.giftedUser.user, outcomeName, this.config.stringConfig.giftOpenTitle, this.config
                 ).handleImageCreate(false, this.firstInter.user)
             ],
             components: []
@@ -606,7 +644,14 @@ export class BoarGift {
      * @private
      */
     private async giveBoar(inter: ButtonInteraction): Promise<void> {
-        const rarityWeights = BoarUtils.getBaseRarityWeights(this.config);
+        let rarityWeights = BoarUtils.getBaseRarityWeights(this.config);
+
+        const curDate = new Date();
+        const isFestiveWeek = curDate.getMonth() === 11 && curDate.getDate() >= 24;
+
+        if (isFestiveWeek) {
+            rarityWeights = BoarUtils.applyMultiplier(50, rarityWeights, this.config);
+        }
 
         const boarIDs = BoarUtils.getRandBoars(
             await DataHandlers.getGuildData(inter.guild?.id, inter), rarityWeights, this.config
@@ -620,7 +665,7 @@ export class BoarGift {
         );
 
         const bacteriaEditions = await this.giftedUser.addBoars(boarIDs, inter, this.config);
-        await this.boarUser.addBoars(boarIDs, inter, this.config);
+        await this.boarUser.addBoars(boarIDs, this.firstInter, this.config);
 
         await inter.editReply({
             files: [
