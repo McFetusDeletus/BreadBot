@@ -115,8 +115,8 @@ export class BoarUser {
 
         const cloneRaritiesNew = userData.itemCollection.powerups.clone.raritiesUsed as number[];
         const cloneRarities = this.itemCollection.powerups.clone.raritiesUsed as number[];
-        this.stats.quests.progress[cloneRarityIndex] += cloneRarities[Math.floor(cloneRarityIndex / 2) + 1] -
-            cloneRaritiesNew[Math.floor(cloneRarityIndex / 2) + 1];
+        this.stats.quests.progress[cloneRarityIndex] += cloneRarities[Math.floor(cloneRarityIndex / 2) + 2] -
+            cloneRaritiesNew[Math.floor(cloneRarityIndex / 2) + 2];
 
         this.stats.quests.progress[sendGiftsIndex] += this.itemCollection.powerups.gift.numUsed -
             userData.itemCollection.powerups.gift.numUsed;
@@ -253,11 +253,17 @@ export class BoarUser {
         if (!this.itemCollection.powerups.clone) {
             this.itemCollection.powerups.clone = new CollectedPowerup();
             this.itemCollection.powerups.clone.numSuccess = 0;
-            this.itemCollection.powerups.clone.raritiesUsed = [0,0,0,0,0,0,0,0,0];
+            this.itemCollection.powerups.clone.raritiesUsed = [0,0,0,0,0,0,0,0,0,0];
         }
+
+        // TODO: Write a script that goes through all users and fixes this
 
         if ((this.itemCollection.powerups.clone.raritiesUsed as number[]).length === 7) {
             (this.itemCollection.powerups.clone.raritiesUsed as number[]).push(0);
+            (this.itemCollection.powerups.clone.raritiesUsed as number[]).unshift(0);
+        }
+
+        if ((this.itemCollection.powerups.clone.raritiesUsed as number[]).length === 9) {
             (this.itemCollection.powerups.clone.raritiesUsed as number[]).unshift(0);
         }
 
@@ -453,7 +459,7 @@ export class BoarUser {
                         ? scores[i]
                         : 0;
 
-                    if (collectBoarIndex >= 0 && Math.floor(collectBoarIndex / 2) + 2 === rarityInfos[i][0]) {
+                    if (collectBoarIndex >= 0 && Math.floor(collectBoarIndex / 2) + 3 === rarityInfos[i][0]) {
                         this.stats.quests.progress[collectBoarIndex]++;
                     }
 

@@ -761,12 +761,12 @@ export class CollectionImageGenerator {
             if (i < 3) {
                 await CanvasUtils.drawText(
                     ctx, strConfig.collEnhancedLabel, nums.collEnhancedLabelPositions[i], mediumFont, 'center',
-                    colorConfig.font, undefined, false, [rarityConfig[i+1].pluralName], [colorConfig['rarity' + (i+2)]]
+                    colorConfig.font, undefined, false, [rarityConfig[i+2].pluralName], [colorConfig['rarity' + (i+3)]]
                 );
             } else {
                 await CanvasUtils.drawText(
-                    ctx, rarityConfig[i+1].pluralName, nums.collEnhancedLabelPositions[i],
-                    mediumFont, 'center', colorConfig['rarity' + (i+2)]
+                    ctx, rarityConfig[i+2].pluralName, nums.collEnhancedLabelPositions[i],
+                    mediumFont, 'center', colorConfig['rarity' + (i+3)]
                 );
             }
 

@@ -424,7 +424,8 @@ export default class CollectionSubcommand implements Subcommand {
         // The boar user will get if transmutation is successful
         const enhancedBoar = BoarUtils.findValid(this.allBoars[this.curPage].rarity[0], this.guildData, this.config);
 
-        if (enhancedBoar === '' || this.allBoars[this.curPage].rarity[0] >= 9) {
+        // Disallow 3rd highest rarity and higher from being enhanced if bypassed
+        if (enhancedBoar === '' || this.allBoars[this.curPage].rarity[0] >= this.config.rarityConfigs.length - 2) {
             await LogDebug.handleError(this.config.stringConfig.dailyNoBoarFound, this.firstInter);
             return;
         }
@@ -461,7 +462,7 @@ export default class CollectionSubcommand implements Subcommand {
                 this.boarUser.stats.general.totalBoars--;
                 this.boarUser.itemCollection.powerups.enhancer.numTotal = 0;
                 (this.boarUser.itemCollection.powerups.enhancer.raritiesUsed as number[])[
-                    this.allBoars[this.curPage].rarity[0]-2
+                    this.allBoars[this.curPage].rarity[0]-3
                 ]++;
                 this.boarUser.stats.quests.progress[spendBucksIndex] += enhancersNeeded * 5;
 

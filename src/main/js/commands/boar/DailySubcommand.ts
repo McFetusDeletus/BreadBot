@@ -99,7 +99,7 @@ export default class DailySubcommand implements Subcommand {
                 }
 
                 // Adjusts weights in accordance to multiplier
-                rarityWeights = this.applyMultiplier(userMultiplier, rarityWeights);
+                rarityWeights = BoarUtils.applyMultiplier(userMultiplier, rarityWeights, this.config);
 
                 const hasAllTruths = boarUser.stats.general.truths &&
                     !boarUser.stats.general.truths.includes(false);
@@ -379,45 +379,5 @@ export default class DailySubcommand implements Subcommand {
         });
 
         return false;
-    }
-
-    /**
-     * Applies the user multiplier to rarity weights using an arc-tan function
-     *
-     * @param userMultiplier - Used to increase weight
-     * @param rarityWeights - Map of weights and their indexes
-     * @private
-     */
-    private applyMultiplier(userMultiplier: number, rarityWeights: Map<number, number>): Map<number, number> {
-        // Sorts from the highest weight to the lowest weight
-        const newWeights = new Map<number, number>(
-            [...rarityWeights.entries()].sort((a: [number, number], b: [number, number]) => {
-                return b[1] - a[1];
-            })
-        );
-
-        const highestWeight = newWeights.values().next().value;
-        const rarityIncreaseConst =
-            this.config.numberConfig.rarityIncreaseConst;
-
-        // Increases probability by increasing weight
-        // https://www.desmos.com/calculator/74inrkixxa | x = multiplier, o = weight
-        for (const weightInfo of newWeights) {
-            const rarityIndex = weightInfo[0];
-            const oldWeight = weightInfo[1];
-
-            if (oldWeight == 0) continue;
-
-            newWeights.set(
-                rarityIndex,
-                oldWeight * (Math.atan(((userMultiplier - 1) * oldWeight) / rarityIncreaseConst) *
-                    (highestWeight - oldWeight) / oldWeight + 1)
-            );
-        }
-
-        // Restores the original order of the Map
-        return new Map([...newWeights.entries()].sort((a: [number, number], b: [number, number]) => {
-            return a[0] - b[0];
-        }));
     }
 }
