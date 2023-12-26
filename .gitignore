@@ -15,6 +15,8 @@ src/main/resources/items/boars/*
 !src/main/resources/items/boars/ZombieBoar.png
 !src/main/resources/items/boars/Boarcterium.png
 !src/main/resources/items/boars/Boarnderwear.png
+!src/main/resources/items/boars/IceBoar.png
+!src/main/resources/items/boars/SantaBoar.png
 src/main/resources/items/badges/*
 !src/main/resources/items/badges/Hunter.png
 !src/main/resources/items/badges/Athlete.png

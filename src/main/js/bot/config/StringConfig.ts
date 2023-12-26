@@ -17,6 +17,7 @@ export class StringConfig {
     public readonly error = '' as string;
     public readonly maintenance = '' as string;
     public readonly bannedString = '' as string;
+    public readonly permBannedString = '' as string;
     public readonly banSuccess = '' as string;
 
     // Setup command messages
