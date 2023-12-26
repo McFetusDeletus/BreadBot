@@ -17,6 +17,7 @@ import {Replies} from '../util/interactions/Replies';
 import {InteractionUtils} from '../util/interactions/InteractionUtils';
 import {ComponentConfig} from '../bot/config/commands/ComponentConfig';
 import {QuestData} from '../bot/data/global/QuestData';
+import moment from "moment";
 
 /**
  * {@link BoarGift BoarGift.ts}
@@ -33,11 +34,9 @@ export class BoarGift {
     public giftedUser = {} as BoarUser;
     private imageGen: CollectionImageGenerator;
     private firstInter = {} as MessageComponentInteraction | ChatInputCommandInteraction;
-    private compInters = [] as ButtonInteraction[];
-    private openersChecked = 0;
+    private compInters = {} as Record<string, {inter: ButtonInteraction, valid: boolean, time: number}>;
     private giftMessage = {} as Message;
     private editedTime = Date.now();
-    private interTimes = [] as number[];
     private collector = {} as InteractionCollector<ButtonInteraction | StringSelectMenuInteraction>;
 
     /**
@@ -156,8 +155,11 @@ export class BoarGift {
      */
     private async handleCollect(inter: ButtonInteraction): Promise<void> {
         try {
-            const index = this.compInters.push(inter) - 1;
-            this.interTimes.push(Date.now());
+            this.compInters[inter.user.id] = {
+                inter: inter,
+                valid: false,
+                time: Date.now()
+            };
 
             await inter.deferUpdate();
 
@@ -173,12 +175,23 @@ export class BoarGift {
                 ? lastOpenedTime + this.config.numberConfig.openDelay > Date.now()
                 : false;
 
+            if (openedRecently) {
+                Replies.handleReply(
+                    inter,
+                    'You\'re on cooldown! Please wait %@.',
+                    undefined,
+                    [moment((lastOpenedTime as number) + this.config.numberConfig.openDelay).fromNow().substring(3)],
+                    [this.config.colorConfig.silver],
+                    true
+                );
+            }
+
             if (isBanned || openedRecently) {
-                this.compInters.splice(index, 1);
+                delete this.compInters[inter.user.id];
                 return;
             }
 
-            this.openersChecked++;
+            this.compInters[inter.user.id].valid = true;
 
             if (!this.collector.ended) {
                 const claimedButton = new ButtonBuilder()
@@ -221,17 +234,25 @@ export class BoarGift {
                 throw err;
             });
 
-            if (this.compInters.length === 0 || reason === CollectorUtils.Reasons.Error) {
+            const interUserIDs = Object.keys(this.compInters);
+
+            if (interUserIDs.length === 0 || reason === CollectorUtils.Reasons.Error) {
                 LogDebug.log(`Gift expired`, this.config, this.firstInter, true);
                 await this.giftMessage.delete().catch(() => {});
                 return;
             }
 
+            let numChecks = 0;
+
             const openCheckInterval = setInterval(async () => {
-                if (this.openersChecked !== this.compInters.length) return;
+                numChecks++;
+                if (!this.compInters[interUserIDs[0]].valid && numChecks < 50) return;
 
                 clearInterval(openCheckInterval);
-                await this.doGift(this.compInters[0]);
+
+                if (numChecks < 50) {
+                    await this.doGift(this.compInters[interUserIDs[0]]);
+                }
             }, 300);
         } catch (err: unknown) {
             await LogDebug.handleError(err, this.firstInter);
@@ -241,10 +262,10 @@ export class BoarGift {
     /**
      * Handles giving the gift and responding
      *
-     * @param inter - The button interaction of the first user that clicked claim
      * @private
+     * @param compInter - Details of interaction that succeeded in opening
      */
-    private async doGift(inter: ButtonInteraction): Promise<void> {
+    private async doGift(compInter: {inter: ButtonInteraction, valid: boolean, time: number}): Promise<void> {
         const strConfig = this.config.stringConfig;
         const colorConfig = this.config.colorConfig;
 
@@ -265,7 +286,7 @@ export class BoarGift {
             subOutcome = this.getOutcome(outcome);
         }
 
-        this.giftedUser = new BoarUser(inter.user, true);
+        this.giftedUser = new BoarUser(compInter.inter.user, true);
 
         let canGift = true;
         await Queue.addQueue(async () => {
@@ -293,10 +314,22 @@ export class BoarGift {
             return;
         }
 
-        const timeToOpen = (this.interTimes[0] - this.editedTime).toLocaleString() + 'ms';
+        await Queue.addQueue(async () => {
+            try {
+                this.giftedUser.refreshUserData();
+                (this.giftedUser.itemCollection.powerups.gift.lastOpened as number) = Date.now();
+                this.giftedUser.updateUserData();
+            } catch (err: unknown) {
+                await LogDebug.handleError(err, compInter.inter);
+            }
+        }, 'gift_last_open' + compInter.inter.id + this.giftedUser.user.id).catch((err: unknown) => {
+            throw err;
+        });
+
+        const timeToOpen = (compInter.time - this.editedTime).toLocaleString() + 'ms';
 
         await Replies.handleReply(
-            inter,
+            compInter.inter,
             strConfig.giftOpened,
             colorConfig.font,
             [strConfig.giftOpenedWow, timeToOpen],
@@ -307,22 +340,22 @@ export class BoarGift {
 
         switch (outcome) {
             case 0: {
-                await this.giveSpecial(subOutcome, inter);
+                await this.giveSpecial(subOutcome, compInter.inter);
                 break;
             }
 
             case 1: {
-                await this.giveBucks(subOutcome, inter);
+                await this.giveBucks(subOutcome, compInter.inter);
                 break;
             }
 
             case 2: {
-                await this.givePowerup(subOutcome, inter);
+                await this.givePowerup(subOutcome, compInter.inter);
                 break;
             }
 
             case 3: {
-                await this.giveBoar(inter);
+                await this.giveBoar(compInter.inter);
                 break;
             }
         }
@@ -339,21 +372,21 @@ export class BoarGift {
 
                 this.giftedUser.updateUserData();
             } catch (err: unknown) {
-                await LogDebug.handleError(err, inter);
+                await LogDebug.handleError(err, compInter.inter);
             }
-        }, 'gift_update_open' + inter.id + this.giftedUser.user.id).catch((err: unknown) => {
+        }, 'gift_update_open' + compInter.inter.id + this.giftedUser.user.id).catch((err: unknown) => {
             throw err;
         });
 
         await Queue.addQueue(async () => {
-            DataHandlers.updateLeaderboardData(this.boarUser, this.config, inter)
-        }, 'gift_update_top' + inter.id + this.boarUser.user.id + 'global').catch((err: unknown) => {
+            DataHandlers.updateLeaderboardData(this.boarUser, this.config, compInter.inter)
+        }, 'gift_update_top' + compInter.inter.id + this.boarUser.user.id + 'global').catch((err: unknown) => {
             throw err;
         });
 
         await Queue.addQueue(async () => {
-            DataHandlers.updateLeaderboardData(this.giftedUser, this.config, inter)
-        }, 'gift_update_opener_top' + inter.id + this.giftedUser.user.id + 'global').catch((err: unknown) => {
+            DataHandlers.updateLeaderboardData(this.giftedUser, this.config, compInter.inter)
+        }, 'gift_update_opener_top' + compInter.inter.id + this.giftedUser.user.id + 'global').catch((err: unknown) => {
             throw err;
         });
     }

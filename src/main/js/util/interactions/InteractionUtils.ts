@@ -97,9 +97,13 @@ export class InteractionUtils {
         const unbanTime = bannedUserData[interaction.user.id];
 
         if (unbanTime && unbanTime > Date.now()) {
+            const replyString = moment(unbanTime).fromNow() === 'Invalid date'
+                ? config.stringConfig.permBannedString
+                : config.stringConfig.bannedString.replace('%@', moment(unbanTime).fromNow());
+
             await Replies.handleReply(
                 interaction,
-                config.stringConfig.bannedString.replace('%@', moment(unbanTime).fromNow()),
+                replyString,
                 config.colorConfig.error,
                 undefined,
                 undefined,

@@ -96,6 +96,7 @@
     "error": "Something went wrong! Please try again in a few minutes. If the issue persists, use /boar report!",
     "maintenance": "BoarBot is currently in maintenance mode!",
     "bannedString": "You're banned from doing this! You'll be unbanned %@!",
+    "permBannedString": "You're permanently banned from doing this!",
     "banSuccess": "Successfully banned %@ for %@ hour(s)!",
     "setupCancelled": "Setup was cancelled!",
     "setupError": "An error occurred while getting information! Try again later.",
@@ -2777,7 +2778,7 @@
             ]
           },
           {
-            "weight": 392,
+            "weight": 390,
             "category": "Powerups",
             "suboutcomes": [
               {
