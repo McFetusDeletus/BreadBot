@@ -307,7 +307,7 @@ export class DataHandlers {
                 const boarData = boarUser.itemCollection.boars[Object.keys(boarUser.itemCollection.boars)[i]];
                 const boarInfo = config.itemConfigs.boars[Object.keys(boarUser.itemCollection.boars)[i]];
 
-                if (boarData.num > 0 && !boarInfo.isSB) {
+                if (boarData.num > 0 ) {
                     uniques++;
                 } else if (boarData.num > 0) {
                     sbUniques++;

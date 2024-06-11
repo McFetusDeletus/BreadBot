@@ -17,8 +17,8 @@
     <a href="https://nodejs.org/en">
         <img src="https://img.shields.io/badge/node-js-lime.svg" alt="node.js">
     </a>
-    <a href="https://github.com/BoarBotDevs/BoarBot">
-        <img src="https://img.shields.io/github/last-commit/BoarBotDevs/BoarBot/main?logo=github&label=last%20release" alt="Last Release Date">
+    <a href="https://github.com/WeslayCodes/BoarBot/main">
+        <img src="https://img.shields.io/github/last-commit/WeslayCodes/BoarBot/main?logo=github&label=last%20release" alt="Last Release Date">
     </a>
 </p>
 

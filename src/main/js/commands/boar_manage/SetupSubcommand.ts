@@ -39,7 +39,7 @@ export default class SetupSubcommand implements Subcommand {
     private setupFields = [] as FormField[];
     private guildDataPath = '';
     private guildData = {} as GuildData;
-    private userResponses = { isSBServer: false, boarChannels: ['', '', ''] };
+    private userResponses = { boarChannels: ['', '', ''] };
     private timerVars = { timeUntilNextCollect: 0, updateTime: setTimeout(() => {}) };
     private curField = 1;
     private modalShowing = {} as ModalBuilder;
@@ -130,9 +130,6 @@ export default class SetupSubcommand implements Subcommand {
                 refreshBoar: setupRowConfig[0][3].components[0],
                 findChannel: setupRowConfig[0][3].components[1],
                 boarInfo: setupRowConfig[0][3].components[2],
-                sbYes: setupRowConfig[1][0].components[0],
-                sbNo: setupRowConfig[1][0].components[1],
-                sbInfo: setupRowConfig[1][0].components[2],
                 cancel: setupRowConfig[2][0].components[0],
                 restart: setupRowConfig[2][0].components[1],
                 next: setupRowConfig[2][0].components[2]
@@ -180,13 +177,7 @@ export default class SetupSubcommand implements Subcommand {
                     break;
                 }
 
-
-                // User chooses if the server is an SB server or not
-                case setupComponents.sbYes.customId:
-                case setupComponents.sbNo.customId: {
-                    await this.doSb(setupComponents);
-                    break;
-                }
+                
 
                 // User wants more information on boar channels
                 case setupComponents.boarInfo.customId: {
@@ -196,13 +187,6 @@ export default class SetupSubcommand implements Subcommand {
                     break;
                 }
 
-                // User wants more information on SB boars
-                case setupComponents.sbInfo.customId: {
-                    await Replies.handleReply(
-                        inter, this.config.stringConfig.setupInfoResponse2, undefined, undefined, undefined, true
-                    );
-                    break;
-                }
             }
         } catch (err: unknown) {
             const canStop = await LogDebug.handleError(err, this.firstInter);
@@ -279,8 +263,6 @@ export default class SetupSubcommand implements Subcommand {
             configField.reset();
         }
 
-        this.userResponses.isSBServer = false;
-
         this.curField = 1;
 
         nextButton.setStyle(ButtonStyle.Primary).setDisabled(true);
@@ -291,21 +273,7 @@ export default class SetupSubcommand implements Subcommand {
     /**
      * Handles when user chooses whether server is a SkyBlock server
      *
-     * @param setupComponents - Used to find what user chose and getting labels to display back
-     * @private
      */
-    private async doSb(setupComponents: Record<string, ComponentConfig>): Promise<void> {
-        const strConfig: StringConfig = this.config.stringConfig;
-        this.userResponses.isSBServer = this.compInter.customId.startsWith(setupComponents.sbYes.customId);
-
-        this.setupFields[1].content = strConfig.setupFinished2 + (this.userResponses.isSBServer
-            ? setupComponents.sbYes.label
-            : setupComponents.sbNo.label);
-
-        this.staticRows[0].components[2].setDisabled(false);
-
-        await this.setupFields[1].editReply(this.compInter);
-    }
 
     /**
      * Handles when the collector is terminated
@@ -357,7 +325,6 @@ export default class SetupSubcommand implements Subcommand {
 
                     this.guildData = {
                         fullySetup: true,
-                        isSBServer: this.userResponses.isSBServer,
                         channels: this.userResponses.boarChannels.filter((ch: string) => {
                             return ch !== '';
                         })

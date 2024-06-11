@@ -677,7 +677,6 @@ export class BoarUser {
         let maxUniques = 0;
 
         const guildData = await DataHandlers.getGuildData(interaction.guild?.id);
-        const isSBServer = guildData?.isSBServer;
 
         for (const rarity of orderedRarities) {
             if (rarity.hunterNeed) {
@@ -687,9 +686,7 @@ export class BoarUser {
 
         for (const boarID of Object.keys(config.itemConfigs.boars)) {
             const boarInfo = config.itemConfigs.boars[boarID];
-            if (!isSBServer && boarInfo.isSB) {
-                maxUniques--;
-            }
+            
         }
 
         // Looping through all boar classes (Common -> Special)
@@ -712,7 +709,7 @@ export class BoarUser {
                 orderedBoars.push(curBoarID);
                 j--;
 
-                if (!rarity.hunterNeed || curBoarData.num == 0 || !isSBServer && curBoarInfo.isSB) {
+                if (!rarity.hunterNeed || curBoarData.num == 0) {
                     numIgnore++;
                 }
             }

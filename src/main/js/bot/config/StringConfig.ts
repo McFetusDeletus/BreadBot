@@ -102,7 +102,6 @@ export class StringConfig {
     public readonly collEnhanceDetails = '' as string;
     public readonly collEditionTitle = '' as string;
     public readonly collEditionLine = '' as string;
-    public readonly collDescriptionSB = '' as string;
 
     // Event strings
 

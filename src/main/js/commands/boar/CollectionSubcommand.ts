@@ -63,8 +63,7 @@ export default class CollectionSubcommand implements Subcommand {
         lastObtained: number,
         rarity: [number, RarityConfig],
         color: string,
-        description: string,
-        isSB: boolean
+        description: string
     }[];
     private allBoarsSearchArr = [] as [name: string, index: number][];
     private boarUser = {} as BoarUser;
@@ -988,8 +987,7 @@ export default class CollectionSubcommand implements Subcommand {
                 lastObtained: boarData.lastObtained,
                 rarity: rarity,
                 color: this.config.colorConfig['rarity' + rarity[0]],
-                description: boarConfig.description,
-                isSB: boarConfig.isSB
+                description: boarConfig.description
             });
 
             this.allBoarsSearchArr.push([boarConfig.name.toLowerCase().replace(/\s+/g, ''), this.allBoars.length]);

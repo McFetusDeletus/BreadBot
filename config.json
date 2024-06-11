@@ -26,8 +26,8 @@
     "wipeUsersFileName": "wipeUsers.json",
     "githubFileName": "github.json",
     "logsFolder": "logs/",
-    "prodStartScript": "StartBotbread.bat",
-    "prodRemotePath": "/BoarBot/",
+    "prodStartScript": "StartBotBread.bat",
+    "prodRemotePath": "/BreadBot-main/",
     "boars": "src/main/resources/items/breads/",
     "badges": "src/main/resources/items/badges/",
     "powerups": "src/main/resources/items/powerups/",
@@ -260,7 +260,7 @@
     "notificationExtras": [
       "",
       "Maybe this time you'll get a divine!",
-      "Did you know that you can transmute a Divine boar? Use /bread help for more info!",
+      "Did you know that you can transmute a Divine bread? Use /bread help for more info!",
       "Found a bug? Report it using /bread report!",
       "There are %@ unique breads to collect!",
       "Gifts have a chance of giving a super rare item...",
@@ -272,7 +272,8 @@
       "BreadBot exists in %@ different servers!",
       "You have a bread streak of %@! The higher your bread streak, the more bread blessings you'll have!",
       "Want to suggest a new bread or feature? Join the server in my About Me!",
-      "BreadBot has a lot more to it than just running /bread daily! To see everything BreadBot has to offer, use /bread help!"
+      "BreadBot has a lot more to it than just running /bread daily! To see everything BreadBot has to offer, use /bread help!",
+      "Did you know that there are over 6000 different breads?"
     ],
     "notificationServerPing": "Note: If you run /bread daily a second time, then click \"Enable Notifications\", you can receive your notifications in DMs instead. To disable this ping, un-react to the bread emoji in <#996887892737667204>*",
     "questCompletionBonus": "Full Completion Bonus:",
@@ -295,7 +296,7 @@
     "pullLink": "https://api.github.com/repos/BoarBotDevs/BoarBot/pulls?state=closed",
     "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     "supportLink": "https://www.patreon.com/BoarBotDevs",
-    "supportStr": "Like playing BoarBot? Support us on our Patreon!\n",
+    "supportStr": "Like playing BreadBot? Support us on our Patreon!\n",
     "spookMessages": [
       "Welcome to Boar-O-Ween! Just like last year, Spooky Boar will be providing us with **five** unique hunts, all rewarding new halloween-themed boars! Make sure you stick until the end because the last hunt had the most time and effort poured into it! Without further ado, let's get started.\n\nFirst video: https://youtu.be/HIHqgEmjA4k",
       "Onto the second hunt! You may still be solving the first hunt, but Spooky Boar insisted on his schedule. Good luck! *Ignore where Spooky Boar said \"closing out\". He rearranged the hunt order last minute*\n\nSecond video: https://youtu.be/ZNgPfizDuug",
@@ -315,7 +316,7 @@
     "fontSmallMedium": 40,
     "fontSmallest": 35,
     "maxUsernameLength": 16,
-    "maxTrackedEditions": 100,
+    "maxTrackedEditions": 10000,
     "maxScore": 100000000000000000,
     "maxBoars": 99999999,
     "maxStreak": 99999999,
@@ -326,7 +327,7 @@
     "maxSmallPow": 999999999,
     "maxPowPages": 3,
     "rarityIncreaseConst": 25000,
-    "miracleIncreaseMax": 1000,
+    "miracleIncreaseMax": 2000,
     "enhanceDetailsPos": [
       564,
       1192
@@ -921,7 +922,7 @@
       1388
     ],
     "marketPerPage": 8,
-    "marketMaxOrders": 8,
+    "marketMaxOrders": 80,
     "marketMaxBucks": 100000,
     "marketOverImgStart": [
       25,
@@ -1113,7 +1114,7 @@
                 "value": 2
               },
               {
-                "name": "Badges & Special Boars",
+                "name": "Badges & Special Breads",
                 "value": 3
               }
             ]
@@ -2202,6 +2203,26 @@
             "Average",
             "Ordinary"
           ]
+        },
+        "baguette": {
+          "name": "Baguette Trivia",
+          "description": "What part of a Baguette is regulated by law?",
+          "choices": [
+            "The Shape",
+            "The Length",
+            "The Dough",
+            "The Price"
+          ]
+        },
+        "":{
+          "name": "",
+          "description": "",
+          "choices": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       },
       "fast": {
@@ -2668,18 +2689,24 @@
         "description": "One of the smartest boars in the universe. Nobody's quite sure why it works at a fast food restaurant, but there must be a reason."
         
       },
+      "croissant": {
+        "name": "Croissant",
+        "pluralName": "Croissants",
+        "file": "croissant.png",
+        "description": "a"
+        
+      },
       "cheese": {
         "name": "Cheesy Bread",
         "pluralName": "Cheesy Breads",
-        "file": "cheeseBoar.png",
+        "file": "cheeseBread.png",
         "description": "This boar has unparalleled skill when it comes to lassoing and piloting horses. It also refuses to touch any modern technology."
         
       },
-      "rickroll": {
-        "name": "Rickroll Boar",
-        "pluralName": "Rickroll Boars",
-        "file": "RickrollBoarSTATIC.png",
-        "staticFile": "RickrollBoarSTATIC.png",
+      "russian": {
+        "name": "Russian Bread",
+        "pluralName": "Russian Breads",
+        "file": "russischBrot.png",
         "description": "Spreads the word of Creator Boar. He'll never give you up, nor will he let you down. He certainly won't run around and... desert you."
         
       },
@@ -2931,7 +2958,8 @@
       "enhancersNeeded": 10,
       "avgClones": 20,
       "boars": [
-        "flourless"
+        "flourless",
+        "croissant"
       ]
     },
     {
@@ -2959,7 +2987,7 @@
       "enhancersNeeded": 30,
       "avgClones": 200,
       "boars": [
-        "rickroll"
+        "russian"
       ]
     },
     {

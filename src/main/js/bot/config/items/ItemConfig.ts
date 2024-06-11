@@ -13,7 +13,6 @@ export class ItemConfig {
     public readonly description = '' as string;
     public readonly file = '' as string;
     public readonly staticFile?: string;
-    public readonly isSB = false as boolean;
     public readonly blacklistType?: string;
     public readonly rewardAmt?: number;
     public readonly outcomes?: OutcomeConfig[];

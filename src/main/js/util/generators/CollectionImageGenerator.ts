@@ -30,8 +30,7 @@ export class CollectionImageGenerator {
         lastObtained: number,
         rarity: [number, RarityConfig],
         color: string,
-        description: string,
-        isSB: boolean
+        description: string
     }[];
     private normalBase = {} as Buffer;
     private detailedBase = {} as Buffer;
@@ -58,8 +57,7 @@ export class CollectionImageGenerator {
             lastObtained: number,
             rarity: [number, RarityConfig],
             color: string,
-            description: string,
-            isSB: boolean
+            description: string
         }[],
         config: BotConfig
     ) {
@@ -89,8 +87,7 @@ export class CollectionImageGenerator {
             lastObtained: number,
             rarity: [number, RarityConfig],
             color: string,
-            description: string,
-            isSB: boolean
+            description: string
         }[],
         config: BotConfig
     ): Promise<void> {
@@ -412,11 +409,6 @@ export class CollectionImageGenerator {
             colorConfig.font,
             nums.collDescriptionWidth,
             true,
-            [
-                curBoar.isSB
-                    ? strConfig.collDescriptionSB
-                    : ''
-            ],
             [colorConfig.silver]
         );
 

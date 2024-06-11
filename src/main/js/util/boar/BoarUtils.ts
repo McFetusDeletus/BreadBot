@@ -52,10 +52,7 @@ export class BoarUtils {
 
         const validRarityBoars = [] as string[];
         for (const boarID of rarities[rarityIndex].boars) {
-            const blacklistType = boarIDs[boarID].blacklistType;
-            const isSB = boarIDs[boarID].isSB;
-
-            if (blacklistType === 'normal' || (!guildData?.isSBServer && isSB)) continue;
+            const blacklistType = boarIDs[boarID];
 
             validRarityBoars.push(boarID);
         }
