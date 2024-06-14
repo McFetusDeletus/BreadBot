@@ -36,7 +36,7 @@ import {GuildData} from './data/global/GuildData';
  *
  * @copyright WeslayCodes & Contributors 2023
  */
-export class BoarBot implements Bot {
+export class BreadBot implements Bot {
 	private client = new Client({ intents:[] });
 	private startTime = Date.now();
 	private configHandler = new ConfigHandler();
