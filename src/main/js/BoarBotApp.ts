@@ -1,4 +1,4 @@
-import {BoarBot} from './bot/BoarBot';
+import {BreadBot} from './bot/BoarBot';
 import {Bot} from './api/bot/Bot';
 import {LogDebug} from './util/logging/LogDebug';
 import fs from 'fs';
@@ -21,10 +21,10 @@ export class BoarBotApp {
     private static bot: Bot;
 
     public static async main(): Promise<void> {
-        const boarBot = new BoarBot();
-        this.bot = boarBot;
+        const breadBot = new BreadBot();
+        this.bot = breadBot;
 
-        process.title = 'BoarBot - Process';
+        process.title = 'Bread 👍';
 
         process.on('uncaughtException', async (e) => {
             LogDebug.handleError(e, undefined, false);
@@ -41,10 +41,10 @@ export class BoarBotApp {
             return;
         }
 
-        await boarBot.create();
+        await breadBot.create();
 
         if (process.argv[2] === 'deploy-commands') {
-            await boarBot.deployCommands();
+            await breadBot.deployCommands();
         }
     }
 

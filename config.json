@@ -3,7 +3,7 @@
     "735212643865854104"
   ],
   "logChannel": "1249362157544542228",
-  "reportsChannel": "1249362320661151917",
+  "reportsChannel": "1250228439672291429",
   "updatesChannel": "1249362245901750363",
   "defaultChannel": "1249362391209082890",
   "spookChannel": "1249370134171357355",
@@ -185,7 +185,7 @@
     "cloneConfirm": "Are you sure you want to use a %@ to clone your %@? If you do, there's a %@ chance that the cloning process will succeed! Click \"Clone\" again to confirm.",
     "cloneFail": "%@ was unaffected by the serum!",
     "eventParticipated": "You've already participated in this event!",
-    "eventNobody": "Nobody participated in the event!",
+    "eventNobody": "Fuck",
     "eventTitle": "%@ EVENT!",
     "eventEndedTitle": "%@ EVENT ENDED!",
     "eventsDisabled": "This server is missing out on powerups! To allow them to spawn, make sure BreadBot has the permissions it requests when you click \"Add To Server\" under its profile!",
@@ -293,16 +293,16 @@
     "defaultImageName": "unknown",
     "fontName": "Minecraft",
     "commandDebugPrefix": "%@ [%@%@]\n",
-    "pullLink": "https://api.github.com/repos/BoarBotDevs/BoarBot/pulls?state=closed",
+    "pullLink": "https://api.github.com/repos/McFetusDeletus/BreadBot/pulls?state=closed",
     "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     "supportLink": "https://www.patreon.com/BoarBotDevs",
     "supportStr": "Like playing BreadBot? Support us on our Patreon!\n",
     "spookMessages": [
-      "Welcome to Boar-O-Ween! Just like last year, Spooky Boar will be providing us with **five** unique hunts, all rewarding new halloween-themed boars! Make sure you stick until the end because the last hunt had the most time and effort poured into it! Without further ado, let's get started.\n\nFirst video: https://youtu.be/HIHqgEmjA4k",
-      "Onto the second hunt! You may still be solving the first hunt, but Spooky Boar insisted on his schedule. Good luck! *Ignore where Spooky Boar said \"closing out\". He rearranged the hunt order last minute*\n\nSecond video: https://youtu.be/ZNgPfizDuug",
-      "Not entirely sure why Spooky Boar wanted everyone to go through his nostalgia trip with him on that previous hunt. Anyways, this next one is a fan favorite... Trivia!\n\nThird video: https://youtu.be/5VflhcH1BCo",
-      "Uh... Spooky Boar needs help with his homework? Maybe you could help him out with that? *Please check the video description*\n\nFourth video: https://youtu.be/6yoY79n6WsY",
-      "The final hunt! Take a trip through Spooky Boar's Manor! Did you know he's lived there for over 100 years?\n\nFifth video: https://youtu.be/4B9tX43uk8Q"
+      "Welcome to Bread-O-Ween! Just like last year, Spooky Bread will be providing us with **five** unique hunts, all rewarding new halloween-themed Breads! Make sure you stick until the end because the last hunt had the most time and effort poured into it! Without further ado, let's get started.\n\nFirst video: https://youtu.be/HIHqgEmjA4k",
+      "Onto the second hunt! You may still be solving the first hunt, but Spooky Bread insisted on his schedule. Good luck! *Ignore where Spooky Bread said \"closing out\". He rearranged the hunt order last minute*\n\nSecond video: https://youtu.be/ZNgPfizDuug",
+      "Not entirely sure why Spooky Bread wanted everyone to go through his nostalgia trip with him on that previous hunt. Anyways, this next one is a fan favorite... Trivia!\n\nThird video: https://youtu.be/5VflhcH1BCo",
+      "Uh... Spooky Bread needs help with his homework? Maybe you could help him out with that? *Please check the video description*\n\nFourth video: https://youtu.be/6yoY79n6WsY",
+      "The final hunt! Take a trip through Spooky Bread's Manor! Did you know he's lived there for over 100 years?\n\nFifth video: https://youtu.be/4B9tX43uk8Q"
     ]
   },
   "numberConfig": {
@@ -316,7 +316,7 @@
     "fontSmallMedium": 40,
     "fontSmallest": 35,
     "maxUsernameLength": 16,
-    "maxTrackedEditions": 10000,
+    "maxTrackedEditions": 1000,
     "maxScore": 100000000000000000,
     "maxBoars": 99999999,
     "maxStreak": 99999999,
@@ -327,7 +327,7 @@
     "maxSmallPow": 999999999,
     "maxPowPages": 3,
     "rarityIncreaseConst": 25000,
-    "miracleIncreaseMax": 2000,
+    "miracleIncreaseMax": 1000,
     "enhanceDetailsPos": [
       564,
       1192
@@ -1941,7 +1941,7 @@
               "components": [
                 {
                   "type": 3,
-                  "customId": "SETUP_BOAR_CHANNEL_SELECT_1",
+                  "customId": "SETUP_BREAD_CHANNEL_SELECT_1",
                   "placeholder": "UNSELECTED"
                 }
               ]
@@ -1951,7 +1951,7 @@
               "components": [
                 {
                   "type": 3,
-                  "customId": "SETUP_BOAR_CHANNEL_SELECT_2",
+                  "customId": "SETUP_BREAD_CHANNEL_SELECT_2",
                   "placeholder": "UNSELECTED"
                 }
               ]
@@ -1961,7 +1961,7 @@
               "components": [
                 {
                   "type": 3,
-                  "customId": "SETUP_BOAR_CHANNEL_SELECT_3",
+                  "customId": "SETUP_BREAD_CHANNEL_SELECT_3",
                   "placeholder": "UNSELECTED"
                 }
               ]
@@ -1971,7 +1971,7 @@
               "components": [
                 {
                   "type": 2,
-                  "customId": "SETUP_REFRESH_BOAR_CHANNELS",
+                  "customId": "SETUP_REFRESH_BREAD_CHANNELS",
                   "label": "Refresh",
                   "style": 2
                 },
@@ -1983,7 +1983,7 @@
                 },
                 {
                   "type": 2,
-                  "customId": "SETUP_INFO_BOAR_CHANNELS",
+                  "customId": "SETUP_INFO_BREAD_CHANNELS",
                   "emoji": "❔",
                   "style": 2
                 }
@@ -2208,9 +2208,9 @@
           "name": "Baguette Trivia",
           "description": "What part of a Baguette is regulated by law?",
           "choices": [
+            "The Dough",
             "The Shape",
             "The Length",
-            "The Dough",
             "The Price"
           ]
         },
@@ -2249,76 +2249,6 @@
         "nine": {
           "name": "Nine buttons",
           "numButtons": 9
-        }
-      },
-      "time": {
-        "name": "Telling Time",
-        "description": "Click the clock that's set to %@!",
-        "rightStyle": 1,
-        "wrongStyle": 1,
-        "one": {
-          "name": "1:00",
-          "rightClock": "\uD83D\uDD50"
-        },
-        "oneThirty": {
-          "name": "1:30",
-          "rightClock": "\uD83D\uDD5C"
-        },
-        "two": {
-          "name": "2:00",
-          "rightClock": "\uD83D\uDD51"
-        },
-        "threeThirty": {
-          "name": "3:30",
-          "rightClock": "\uD83D\uDD5E"
-        },
-        "four": {
-          "name": "4:00",
-          "rightClock": "\uD83D\uDD53"
-        },
-        "fourThirty": {
-          "name": "4:30",
-          "rightClock": "\uD83D\uDD5F"
-        },
-        "five": {
-          "name": "5:00",
-          "rightClock": "\uD83D\uDD54"
-        },
-        "sixThirty": {
-          "name": "6:30",
-          "rightClock": "\uD83D\uDD61"
-        },
-        "seven": {
-          "name": "7:00",
-          "rightClock": "\uD83D\uDD56"
-        },
-        "sevenThirty": {
-          "name": "7:30",
-          "rightClock": "\uD83D\uDD62"
-        },
-        "eight": {
-          "name": "8:00",
-          "rightClock": "\uD83D\uDD57"
-        },
-        "nineThirty": {
-          "name": "9:30",
-          "rightClock": "\uD83D\uDD64"
-        },
-        "ten": {
-          "name": "10:00",
-          "rightClock": "\uD83D\uDD59"
-        },
-        "tenThirty": {
-          "name": "10:30",
-          "rightClock": "\uD83D\uDD65"
-        },
-        "eleven": {
-          "name": "11:00",
-          "rightClock": "\uD83D\uDD5A"
-        },
-        "twelveThirty": {
-          "name": "12:30",
-          "rightClock": "\uD83D\uDD67"
         }
       }
     },
@@ -2634,116 +2564,124 @@
   "itemConfigs": {
     "boars": {
       "zombie": {
-        "name": "Zomboar",
-        "pluralName": "Zomboars",
-        "file": "ZombieBoar.png",
-        "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way."
-        
+        "name": "Wormy Bread",
+        "pluralName": "Wormy Bread",
+        "file": "wormy.png",
+        "description": "Zombification is impossible for boars, so this boar is actually just a cannibal in a costume. Still frightening either way."       
       },
       "ice": {
         "name": "Icy Boar",
         "pluralName": "Icy Boars",
         "file": "IceBoar.png",
-        "description": "Touching this boar will instantly give you frostbite. Wherever it goes, blizzard-like conditions follow. Found in the heart of glaciers."
-        
+        "description": "Touching this boar will instantly give you frostbite. Wherever it goes, blizzard-like conditions follow. Found in the heart of glaciers."       
       },
       "normal": {
         "name": "Normal Bread",
         "pluralName": "Normal Breads",
-        "file": "MixedBread.png",
+        "file": "normal.png",
         "description": "The most common bread. Quite unremarkable."
-        
       },
       "filled":{
         "name": "Filled Bread",
         "pluralName": "Filled Breads",
-        "file": "filled_bread.png",
+        "file": "filled.png",
         "description": "filled bread mmmmm"
-
+      },
+      "heart": {
+        "name": "Heart Bread",
+        "pluralName": "Heart Breads",
+        "file": "heart.png",
+        "description": "This bread is often used as a gift between lovers on Valentines day, similar to roses or chocolate"
+      },
+      "white": {
+        "name": "White Bread",
+        "pluralName": "White Breads",
+        "file": "white.png",
+        "description": "Kind of plain. Not as plain as Toast though..."
+      },
+      "sourdough": {
+        "name": "Sourdough Bread",
+        "pluralName": "Sourdough Bread",
+        "file": "sourdough.png",
+        "description": "Despite its name this bread isnt actually sour, it just uses a fermented flour-water mix that contains wild yeast instead of the commercial equivalent."
       },
       "carrot": {
         "name": "Carrot Bread",
         "pluralName": "Carrot Breads",
-        "file": "CarrotBread.png",
-        "description": "On the surface, it's indistinguishable from the grass around it. The only being capable of spotting them is Farmer Boar."
-        
+        "file": "carrot.png",
+        "description": "On the surface, it's indistinguishable from the grass around it. The only being capable of spotting them is Farmer bread."      
       },
       "crystal": {
         "name": "Crystal Bread",
         "pluralName": "Crystal Bread",
-        "file": "crystalBread.png",
-        "description": "This boar inside this orb is said to have time-warping abilities. Encased in crystals, its powers are limited to telling others their future."
-        
+        "file": "crystal.png",
+        "description": "This bread inside this orb is said to have time-warping abilities. Encased in crystals, its powers are limited to telling others their future."        
       },
       "moldy": {
         "name": "Moldy Bread",
         "pluralName": "Moldy Breads",
-        "file": "MoldyBread.png",
-        "description": "While it may look strikingly similar to a normal boar at first glance, it's actually a paranormal being that lives inside the skin of recently deceased boars."
-        
+        "file": "moldy.png",
+        "description": "While it may look strikingly similar to a normal bread at first glance, it's actually a paranormal being that lives inside the skin of recently deceased breads."       
+      },
+      "nut": {
+        "name": "Nut Bread",
+        "pluralName": "Nut Breads",
+        "file": "nut.png",
+        "description": "Often enjoyed during festive times, yummy during other times of the year nonetheless."
       },
       "flourless": {
         "name": "Flourless Bread",
         "pluralName": "Flourless Breads",
-        "file": "flourless_bread2.png",
-        "description": "One of the smartest boars in the universe. Nobody's quite sure why it works at a fast food restaurant, but there must be a reason."
-        
+        "file": "flourless.png",
+        "description": "One of the smartest breads in the universe. Nobody's quite sure why it works at a fast food restaurant, but there must be a reason."
       },
       "croissant": {
         "name": "Croissant",
         "pluralName": "Croissants",
         "file": "croissant.png",
-        "description": "a"
-        
+        "description": "a"        
       },
       "cheese": {
         "name": "Cheesy Bread",
         "pluralName": "Cheesy Breads",
-        "file": "cheeseBread.png",
-        "description": "This boar has unparalleled skill when it comes to lassoing and piloting horses. It also refuses to touch any modern technology."
-        
+        "file": "cheese.png",
+        "description": "This bread has unparalleled skill when it comes to lassoing and piloting horses. It also refuses to touch any modern technology."       
       },
       "russian": {
         "name": "Russian Bread",
         "pluralName": "Russian Breads",
-        "file": "russischBrot.png",
-        "description": "Spreads the word of Creator Boar. He'll never give you up, nor will he let you down. He certainly won't run around and... desert you."
-        
+        "file": "russian.png",
+        "description": "Spreads the word of Creator Bread. He'll never give you up, nor will he let you down. He certainly won't run around and... desert you."       
       },
       "baguette": {
         "name": "Baguette",
         "pluralName": "Baguettes",
         "file": "baguette.png",
-        "description": "A long, thin type of bread. While the dough is regulated by french law, the shape is not."
-        
+        "description": "A long, thin type of bread. While the dough is regulated by french law, the shape is not."       
       },
       "bacteria": {
         "name": "Dough",
         "pluralName": "Dough",
         "file": "dough.png",
-        "description": "The first step in creating almost any bread. Consuming it raw might results in explosive symptoms."
-        
+        "description": "The first step in creating almost any bread. Consuming it raw might results in explosive symptoms."       
       },
       "underwear": {
         "name": "Boarnderwear",
         "pluralName": "Boarnderwear",
         "file": "Boarnderwear.png",
-        "description": "Children all around the world are disappointed when they open a gift excitedly just to get this boar. It appears as though it's been worn."
-        
+        "description": "Children all around the world are disappointed when they open a gift excitedly just to get this bread. It appears as though it's been worn."       
       },
       "santa": {
         "name": "Santa Boar",
         "pluralName": "Santa Boars",
         "file": "SantaBoar.png",
-        "description": "Every Boarmas, this boar delivers gifts to both young and old! Questioning its identity is highly discouraged."
-        
+        "description": "Every breadsmas, this bread delivers gifts to both young and old! Questioning its identity is highly discouraged."      
       },
       "unobtainabread": {
         "name": "Unobtainabread",
         "pluralName": "Unobtainabreads",
         "file": "UnknownBread.png",
         "description": "Nobody knows where this bread came from or how it was created. We're not even sure it exists!"
-
       }
     },
     "badges": {
@@ -2751,22 +2689,19 @@
         "name": "Boar Hunter",
         "pluralName": "Boar Hunters",
         "file": "Hunter.png",
-        "description": "Given to users that have collected all non-Special boars"
-        
+        "description": "Given to users that have collected all non-Special breads"       
       },
       "athlete": {
         "name": "Boarthlete",
         "pluralName": "Boarthletes",
         "file": "Athlete.png",
-        "description": "Given to users that are currently #1 on a leaderboard"
-        
+        "description": "Given to users that are currently #1 on a leaderboard"       
       },
       "erdbeermarmeladebrot": {
         "name": "Erdbeermarmeladebrot mit Honig",
         "pluralName": "Erdbeermarmeladenbrote mit Honig",
         "file": "erdbeermarmeladebrot_mit_honig.png",
-        "description": "Eines Tages dachte Tom an ein leckeres Erdbeermarmeladebrot mit Honig. Er machte einen Spaziergang, doch das Erdbeermarmeladebrot mit Honig wollte ihm nicht mehr aus dem Kopf gehen."
-        
+        "description": "Eines Tages dachte Tom an ein leckeres Erdbeermarmeladebrot mit Honig. Er machte einen Spaziergang, doch das Erdbeermarmeladebrot mit Honig wollte ihm nicht mehr aus dem Kopf gehen."       
       }
     },
     "powerups": {
@@ -2774,16 +2709,14 @@
         "name": "Miracle Charm",
         "pluralName": "Miracle Charms",
         "file": "MiracleCharm.png",
-        "description": "Increases the number of Bread Blessings you have at 5% per charm (compounding).",
-        
+        "description": "Increases the number of Bread Blessings you have at 5% per charm (compounding).",        
         "rewardAmt": 1
       },
       "gift": {
         "name": "Bread Gift",
         "pluralName": "Bread Gifts",
         "file": "BoarGift.png",
-        "description": "A gift that can be sent to and opened by other people. Contains boar bucks, boars, rare surprises, and more.",
-        
+        "description": "A gift that can be sent to and opened by other people. Contains bread bucks, breads, rare surprises, and more.",        
         "rewardAmt": 1,
         "outcomes": [
           {
@@ -2847,7 +2780,7 @@
         "name": "Transmutation Charge",
         "pluralName": "Transmutation Charges",
         "file": "TransmutationCharge.png",
-        "description": "Used to charge up the Transmutation Cell, which can be used to transmute a boar into a random boar of the next highest rarity.",
+        "description": "Used to charge up the Transmutation Cell, which can be used to transmute a bread into a random bread of the next highest rarity.",
         
         "rewardAmt": 1
       },
@@ -2855,7 +2788,7 @@
         "name": "Cloning Serum",
         "pluralName": "Cloning Serums",
         "file": "CloningSerum.png",
-        "description": "Clones a boar of your choosing. Higher rarity boars are more difficult to clone than lower rarity boars.",
+        "description": "Clones a bread of your choosing. Higher rarity breads are more difficult to clone than lower rarity breads.",
         
         "rewardAmt": 1
       }
@@ -2873,7 +2806,7 @@
       "enhancersNeeded": 0,
       "avgClones": 100,
       "boars": [
-        "zombie"
+        "wormy"
       ]
     },
     {
@@ -2902,7 +2835,10 @@
       "avgClones": 1,
       "boars": [
         "normal",
-        "filled"
+        "filled",
+        "heart",
+        "white",
+        "sourdough"
       ]
     },
     {
@@ -2944,7 +2880,8 @@
       "enhancersNeeded": 5,
       "avgClones": 10,
       "boars": [
-        "moldy"
+        "moldy",
+        "nut"
       ]
     },
     {
@@ -2993,9 +2930,9 @@
     {
       "name": "Immaculate",
       "pluralName": "Immaculates",
-      "weight": 0.99,
+      "weight": 0.01,
       "baseScore": 0,
-      "fromDaily": false,
+      "fromDaily": true,
       "hunterNeed": true,
       "givesSpecial": true,
       "enhancersNeeded": 0,
