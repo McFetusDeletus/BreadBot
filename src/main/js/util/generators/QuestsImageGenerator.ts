@@ -109,7 +109,7 @@ export class QuestsImageGenerator {
                 case 'rarity': {
                     isAltStr = valIndex === 1 || valIndex === 3;
                     numToComplete = 1;
-                    dynamicPart = config.rarityConfigs[questConfig.questVals[valIndex][0] - 1].name + ' Boar';
+                    dynamicPart = config.rarityConfigs[questConfig.questVals[valIndex][0] - 1].name + ' Bread';
                     break;
                 }
 

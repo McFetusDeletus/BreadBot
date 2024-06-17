@@ -103,7 +103,7 @@ Used to upgrade a boar to a random boar of the next highest rarity. You can see 
 </div>
 
 ### Powerup - Miracle Charms
-Increases the number of boar blessings you have by 5% per, compounding.
+Increases the number of boar blessings you have by 10% per, compounding.
 
 <div align="center">
     <img src="https://github.com/WeslayCodes/BoarBot/assets/60010287/3531ff29-55f0-49b8-9ffc-4fecc3970ecb" alt="Miracle Charm confirmation message" width="600">

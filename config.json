@@ -2,15 +2,16 @@
   "devs": [
     "735212643865854104"
   ],
-  "logChannel": "1249362157544542228",
-  "reportsChannel": "1250228439672291429",
-  "updatesChannel": "1249362245901750363",
-  "defaultChannel": "1249362391209082890",
-  "spookChannel": "1249370134171357355",
-  "unlimitedBoars": true,
-  "debugMode": true,
-  "maintenanceMode": false,
-  "marketOpen": true,
+    "logChannel": "1249362157544542228",
+    "reportsChannel": "1250228439672291429",
+    "updatesChannel": "1249362245901750363",
+    "defaultChannel": "1249362391209082890",
+    "spookChannel": "1249370134171357355",
+    "unlimitedBoars": true,
+    "debugMode": true,
+    "maintenanceMode": false,
+    "marketOpen": true,
+
   "pathConfig": {
     "listeners": "../../listeners/",
     "commands": "../../commands/",
@@ -280,7 +281,7 @@
     "questFullyComplete": "FULLY COMPLETE!",
     "questInvFull": "Some items were unable to fit in your inventory!",
     "noParentChannel": "NO CATEGORY",
-    "notValidChannel": "This channel isn't valid! Try a different one! The channel should be a text channel, be not already chosen, and exists in this server.",
+    "notValidChannel": "This channel isn't valid! Try a different one! The channel should be a text channel, be not already chosen, and exist in this server.",
     "sentReport": "Successfully sent report!",
     "deletedData": "Success! Your data will be deleted in 24 hours. If you'd like to cancel this operation, run any BreadBot command within the next 24 hours.",
     "cancelDelete": "Cancelled the self-wipe process.",
@@ -296,7 +297,7 @@
     "pullLink": "https://api.github.com/repos/McFetusDeletus/BreadBot/pulls?state=closed",
     "githubImg": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     "supportLink": "https://www.patreon.com/BoarBotDevs",
-    "supportStr": "Like playing BreadBot? Support us on our Patreon!\n",
+    "supportStr": "Like playing BreadBot? Support the original bot, BoarBot on their Patreon!\n",
     "spookMessages": [
       "Welcome to Bread-O-Ween! Just like last year, Spooky Bread will be providing us with **five** unique hunts, all rewarding new halloween-themed Breads! Make sure you stick until the end because the last hunt had the most time and effort poured into it! Without further ado, let's get started.\n\nFirst video: https://youtu.be/HIHqgEmjA4k",
       "Onto the second hunt! You may still be solving the first hunt, but Spooky Bread insisted on his schedule. Good luck! *Ignore where Spooky Bread said \"closing out\". He rearranged the hunt order last minute*\n\nSecond video: https://youtu.be/ZNgPfizDuug",
@@ -327,7 +328,7 @@
     "maxSmallPow": 999999999,
     "maxPowPages": 3,
     "rarityIncreaseConst": 25000,
-    "miracleIncreaseMax": 1000,
+    "miracleIncreaseMax": 1500,
     "enhanceDetailsPos": [
       564,
       1192
@@ -1996,31 +1997,6 @@
               "components": [
                 {
                   "type": 2,
-                  "customId": "SETUP_SB_YES",
-                  "label": "Yes",
-                  "style": 1
-                },
-                {
-                  "type": 2,
-                  "customId": "SETUP_SB_NO",
-                  "label": "No",
-                  "style": 1
-                },
-                {
-                  "type": 2,
-                  "customId": "SETUP_INFO_SB",
-                  "emoji": "❔",
-                  "style": 2
-                }
-              ]
-            }
-          ],
-          [
-            {
-              "type": 1,
-              "components": [
-                {
-                  "type": 2,
                   "customId": "SETUP_CANCEL",
                   "label": "Cancel",
                   "style": 4
@@ -2214,14 +2190,14 @@
             "The Price"
           ]
         },
-        "":{
-          "name": "",
-          "description": "",
+        "white":{
+          "name": "White Bread Trivia",
+          "description": "What Bread is mentioned in White Bread's description?",
           "choices": [
-            "",
-            "",
-            "",
-            ""
+            "Toast",
+            "Moldy Bread",
+            "Normal Bread",
+            "Limb Bread"
           ]
         }
       },
@@ -2585,13 +2561,13 @@
         "name": "Filled Bread",
         "pluralName": "Filled Breads",
         "file": "filled.png",
-        "description": "filled bread mmmmm"
+        "description": "This bread is actually a gigantic carnivoric plant that disguises itself as a bread to lure its victims close."
       },
       "heart": {
         "name": "Heart Bread",
         "pluralName": "Heart Breads",
         "file": "heart.png",
-        "description": "This bread is often used as a gift between lovers on Valentines day, similar to roses or chocolate"
+        "description": "This bread is often gifted between lovers on Valentines day, similar to roses or chocolate."
       },
       "white": {
         "name": "White Bread",
@@ -2609,7 +2585,7 @@
         "name": "Carrot Bread",
         "pluralName": "Carrot Breads",
         "file": "carrot.png",
-        "description": "On the surface, it's indistinguishable from the grass around it. The only being capable of spotting them is Farmer bread."      
+        "description": "Marketed as a healthy snack but contains so many hidden sugars, it actually makes you addicted."      
       },
       "crystal": {
         "name": "Crystal Bread",
@@ -2627,7 +2603,13 @@
         "name": "Nut Bread",
         "pluralName": "Nut Breads",
         "file": "nut.png",
-        "description": "Often enjoyed during festive times, yummy during other times of the year nonetheless."
+        "description": "Often enjoyed during festive times or used to poison allergic people."
+      },
+      "limb": {
+        "name": "Limb Bread",
+        "pluralName": "Limb Breads",
+        "file": "limb.png",
+        "description": "A horrible tradition that nobody dares to question. Started by some Australian chefs who wanted to bring their bread to the next level."
       },
       "flourless": {
         "name": "Flourless Bread",
@@ -2641,17 +2623,47 @@
         "file": "croissant.png",
         "description": "a"        
       },
+      "loafers": {
+        "name": "Loafers",
+        "pluralName": "Loafers",
+        "file": "loafers.png",
+        "description": "They smell like cheese for some reason."
+      },
       "cheese": {
         "name": "Cheesy Bread",
         "pluralName": "Cheesy Breads",
         "file": "cheese.png",
         "description": "This bread has unparalleled skill when it comes to lassoing and piloting horses. It also refuses to touch any modern technology."       
       },
+      "brownies": {
+        "name": "''Brownies''",
+        "pluralName": "''Brownies''",
+        "file": "brownie.png",
+        "description": "These are the most tasty brownies you'll ever eat. If you dont mind the Aliens that is..."
+      },
       "russian": {
         "name": "Russian Bread",
         "pluralName": "Russian Breads",
         "file": "russian.png",
-        "description": "Spreads the word of Creator Bread. He'll never give you up, nor will he let you down. He certainly won't run around and... desert you."       
+        "description": "Originating from St. Petersburg, nowadays its only produced in Germany."       
+      },
+      "grilledCheese": {
+        "name": "Grilled Cheese Sandwich",
+        "pluralName": "Grilled Cheese Sandwiches",
+        "file": "grilledCheese.png",
+        "description": "Several thousand people compete to see who can make the greatest, most perfect one. Little do they know it's the one you made at 3 am while home alone."
+      },
+      "bred": {
+        "name": "bred",
+        "pluralName": "breds",
+        "file": "bred.png",
+        "description": "Sometimes people try to eat this bread, just to find out it's only Two-dimensional."
+      },
+      "brd": {
+        "name": "brd",
+        "pluralName": "brds",
+        "file": "brd.png",
+        "description": "Most people run away when they see this bread, thats how strong and concentrated its aura is. In reality it just wants to find a friend..."
       },
       "baguette": {
         "name": "Baguette",
@@ -2672,10 +2684,10 @@
         "description": "Children all around the world are disappointed when they open a gift excitedly just to get this bread. It appears as though it's been worn."       
       },
       "santa": {
-        "name": "Santa Boar",
-        "pluralName": "Santa Boars",
-        "file": "SantaBoar.png",
-        "description": "Every breadsmas, this bread delivers gifts to both young and old! Questioning its identity is highly discouraged."      
+        "name": "Gingerbread Man",
+        "pluralName": "Gingerbread Men",
+        "file": "gingerbread.png",
+        "description": "Every breadsmas, this bread delivers gifts to both young and old! Eating it is highly frowned upon."      
       },
       "unobtainabread": {
         "name": "Unobtainabread",
@@ -2686,14 +2698,14 @@
     },
     "badges": {
       "hunter": {
-        "name": "Boar Hunter",
-        "pluralName": "Boar Hunters",
+        "name": "Bread Hunter",
+        "pluralName": "Bread Hunters",
         "file": "Hunter.png",
         "description": "Given to users that have collected all non-Special breads"       
       },
       "athlete": {
-        "name": "Boarthlete",
-        "pluralName": "Boarthletes",
+        "name": "Breadthlete",
+        "pluralName": "Breadthletes",
         "file": "Athlete.png",
         "description": "Given to users that are currently #1 on a leaderboard"       
       },
@@ -2702,6 +2714,18 @@
         "pluralName": "Erdbeermarmeladenbrote mit Honig",
         "file": "erdbeermarmeladebrot_mit_honig.png",
         "description": "Eines Tages dachte Tom an ein leckeres Erdbeermarmeladebrot mit Honig. Er machte einen Spaziergang, doch das Erdbeermarmeladebrot mit Honig wollte ihm nicht mehr aus dem Kopf gehen."       
+      },
+      "ohwowbread": {
+        "name": "Oh Wow Bread!",
+        "pluralName": "Oh Wow Breads!",
+        "file": "ohwowbread.png",
+        "description": "Oh wow, Bread!"
+      },
+      "kachow": {
+        "name": "Kachow",
+        "pluralName": "Kachow",
+        "file": "kachow.png",
+        "description": "I'm fast as fuck, boi"
       }
     },
     "powerups": {
@@ -2796,8 +2820,8 @@
   },
   "rarityConfigs": [
     {
-      "name": "Wicked",
-      "pluralName": "Wickeds",
+      "name": "Haunting",
+      "pluralName": "Haunteds",
       "weight": 827,
       "baseScore": 20,
       "fromDaily": false,
@@ -2881,7 +2905,8 @@
       "avgClones": 10,
       "boars": [
         "moldy",
-        "nut"
+        "nut",
+        "limb"
       ]
     },
     {
@@ -2896,7 +2921,8 @@
       "avgClones": 20,
       "boars": [
         "flourless",
-        "croissant"
+        "croissant",
+        "loafers"
       ]
     },
     {
@@ -2910,7 +2936,8 @@
       "enhancersNeeded": 18,
       "avgClones": 50,
       "boars": [
-        "cheese"
+        "cheese",
+        "brownies"
       ]
     },
     {
@@ -2924,21 +2951,24 @@
       "enhancersNeeded": 30,
       "avgClones": 200,
       "boars": [
-        "russian"
+        "russian",
+        "bred",
+        "grilledCheese"
       ]
     },
     {
       "name": "Immaculate",
       "pluralName": "Immaculates",
       "weight": 0.01,
-      "baseScore": 0,
+      "baseScore": 5000,
       "fromDaily": true,
       "hunterNeed": true,
       "givesSpecial": true,
       "enhancersNeeded": 0,
       "avgClones": 500,
       "boars": [
-        "baguette"
+        "baguette",
+        "brd"
       ]
     },
     {
